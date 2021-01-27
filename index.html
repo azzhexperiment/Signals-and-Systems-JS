@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>p5.js example</title>
+	<title>Oscillator</title>
 
 	<style>
 		html,
@@ -17,16 +17,108 @@
 			display: block;
 		}
 
+		.slidecontainer {
+			width: 100%;
+		}
+
+		.slider {
+			-webkit-appearance: none;
+			width: 200px;
+			height: 15px;
+			border-radius: 5px;
+			background: #d3d3d3;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+		}
+
+		.slider:hover {
+			opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #4CAF50;
+			cursor: pointer;
+		}
+
+		.slider::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #4CAF50;
+			cursor: pointer;
+		}
+
 	</style>
 
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
-	<!-- <script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script> -->
+		src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script>
+
 </head>
 
 <body>
+	<h3>Choose your oscillator</h3>
+	<div>
+		<input type="radio" id="sine" name="oscType" value="Asine" checked>
+		<label for="sine">Sine</label>
+	</div>
+
+	<div>
+		<input type="radio" id="triangle" name="oscType" value="Atriangle">
+		<label for="triangle">Triangle</label>
+	</div>
+
+	<div>
+		<input type="radio" id="sawtooth" name="oscType" value="Asawtooth">
+		<label for="sawtooth">Sawtooth</label>
+	</div>
+
+	<div>
+		<input type="radio" id="square" name="oscType" value="Asquare">
+		<label for="square">Square</label>
+	</div>
+
+	<div class="slidecontainer">
+		<input type="range" min="20" max="20000" value="440" class="slider"
+			id="freq">
+
+		<p>Frequency: <span id="freqOutput"></span></p>
+
+		<input type="range" min="0" max="10" value="1" class="slider" id="amp">
+
+		<p>Amplitude: <span id="ampOutput"></span></p>
+	</div>
+
+	<button type="button" id="play">Make some noise</button>
+	<button type="button" id="stop">Stop the noise</button>
+
+	<script>
+		const ampInput = document.getElementById("amp")
+		const ampOutput = document.getElementById("ampOutput")
+		const freqInput = document.getElementById("freq")
+		const freqOutput = document.getElementById("freqOutput")
+		const stopAudioBtn = document.getElementById('stop')
+		const playAudioBtn = document.getElementById('play')
+
+		ampOutput.innerHTML = ampInput.value
+		freqOutput.innerHTML = freqInput.value;
+
+		ampInput.oninput = function () {
+			ampOutput.innerHTML = this.value;
+		}
+
+		freqInput.oninput = function () {
+			freqOutput.innerHTML = this.value;
+		}
+	</script>
+
 	<script src="app/sketch.js"></script>
 </body>
 

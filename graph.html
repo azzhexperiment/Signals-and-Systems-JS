@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8>
+	<title>g.js</title>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+	</style>
+
+	<script
+		src="https://cdn.rawgit.com/nodebox/g.js/master/dist/g.min.js"></script>
+</head>
+
+<body>
+	<canvas id="c"></canvas>
+
+	<script>
+		let c = document.getElementById('c')
+
+		c.width = window.innerWidth; c.height = window.innerHeight
+
+		let ctx = c.getContext('2d')
+		ctx.translate(c.width / 2, c.height / 2)
+
+		let path = g.triangleWave(0.7, 100, 500, 1, -0.2)
+
+		path.draw(ctx)
+	</script>
+</body>
+
+</html>
