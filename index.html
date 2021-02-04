@@ -56,70 +56,87 @@
 		}
 
 	</style>
-
-	<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script>
-
 </head>
 
 <body>
 	<h3>Choose your oscillator</h3>
-	<div>
-		<input type="radio" id="sine" name="oscType" value="Asine" checked>
-		<label for="sine">Sine</label>
-	</div>
 
-	<div>
-		<input type="radio" id="triangle" name="oscType" value="Atriangle">
-		<label for="triangle">Triangle</label>
-	</div>
-
-	<div>
-		<input type="radio" id="sawtooth" name="oscType" value="Asawtooth">
-		<label for="sawtooth">Sawtooth</label>
-	</div>
-
-	<div>
-		<input type="radio" id="square" name="oscType" value="Asquare">
-		<label for="square">Square</label>
-	</div>
+	<select name="oscillatorType" id="oscillator-type">
+		<option value="sine">Sine</option>
+		<option value="triangle">Triangle</option>
+		<option value="sawtooth">sawtooth</option>
+		<option value="square">Square</option>
+	</select>
 
 	<div class="slidecontainer">
+		<!-- TODO: add accordion for why this range is chosen -->
+
 		<input type="range" min="20" max="20000" value="440" class="slider"
 			id="freq">
-
-		<p>Frequency: <span id="freqOutput"></span></p>
+		<p>Frequency: <span id="freq-reading"></span></p>
 
 		<input type="range" min="0" max="10" value="1" class="slider" id="amp">
-
-		<p>Amplitude: <span id="ampOutput"></span></p>
+		<p>Amplitude: <span id="amp-reading"></span></p>
 	</div>
 
-	<button type="button" id="play">Make some noise</button>
-	<button type="button" id="stop">Stop the noise</button>
+	<button type="button" id="play" data-muted="true">Make some noise</button>
 
 	<script>
-		const ampInput = document.getElementById("amp")
-		const ampOutput = document.getElementById("ampOutput")
-		const freqInput = document.getElementById("freq")
-		const freqOutput = document.getElementById("freqOutput")
-		const stopAudioBtn = document.getElementById('stop')
-		const playAudioBtn = document.getElementById('play')
+		let appInit = false
 
-		ampOutput.innerHTML = ampInput.value
-		freqOutput.innerHTML = freqInput.value;
+		const oscillatorType = document.getElementById("oscillator-type").value
+		const amp = document.getElementById("amp")
+		const freq = document.getElementById("freq")
+		const ampReading = document.getElementById("amp-reading")
+		const freqReading = document.getElementById("freq-reading")
+		const play = document.getElementById('play')
 
-		ampInput.oninput = function () {
-			ampOutput.innerHTML = this.value;
+		ampReading.innerHTML = amp.value
+		freqReading.innerHTML = freq.value
+
+		amp.oninput = () => {
+			ampReading.innerHTML = this.value
 		}
 
-		freqInput.oninput = function () {
-			freqOutput.innerHTML = this.value;
+		freq.oninput = () => {
+			freqReading.innerHTML = this.value
+		}
+
+		// startOscillator = () => oscillator.start()
+		// stopOscillator = () => oscillator.stop()
+		// startOscillator()
+
+		play.addEventListener('click', init)
+
+		function init() {
+			if (appInit) { return }
+
+			// create web audio api context
+			const AudioContext = window.AudioContext || window.webkitAudioContext
+			const audioCtx = new AudioContext()
+
+			// create Oscillator node
+			const oscillator = audioCtx.createOscillator()
+
+			oscillator.type = oscillatorType
+			oscillator.frequency.setValueAtTime(freq.value, audioCtx.currentTime) // value in hertz
+			oscillator.connect(audioCtx.destination)
+
+			play.onclick = () => {
+				if (play.getAttribute('data-muted') === 'false') {
+					// gainNode.disconnect(audioCtx.destination)
+					play.setAttribute('data-muted', 'true')
+					play.innerHTML = "Make some noise"
+				} else {
+					// gainNode.connect(audioCtx.destination)
+					play.setAttribute('data-muted', 'false')
+					play.innerHTML = "Mute"
+				};
+			}
+
+			isAppInit = true;
 		}
 	</script>
-
-	<script src="app/sketch.js"></script>
 </body>
 
 </html>
