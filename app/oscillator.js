@@ -1,6 +1,7 @@
 let appInit = false
 
-const oscillatorType = document.getElementById('oscillator-type').value
+const type = document.getElementById('oscillator-type')
+const typeValue = type.value
 // const amp = document.getElementById('amp')
 const freq = document.getElementById('freq')
 // const ampReading = document.getElementById('amp-reading')
@@ -36,12 +37,14 @@ function init () {
   oscillator.connect(gainNode)
   gainNode.connect(audioCtx.destination)
 
-  oscillator.type = oscillatorType
+  updateOscillatorType
+
   oscillator.frequency.setValueAtTime(freq.value, audioCtx.currentTime)
   oscillator.connect(audioCtx.destination)
 
   oscillator.start()
 
+  type.onchange = updateOscillatorType
   freq.onfocus = updateFrequency
 
   console.log('The oscillator type is ' + oscillatorType)
@@ -62,11 +65,14 @@ function init () {
   // Catch when oscillator ends
   oscillator.onended = () => console.log('Oscillator ended')
 
-  function updateFrequency (e) {
-    console.log('Current frequency is ' + freq.value)
-    oscillator.frequency.value = freq.value
+  function updateOscillatorType () {
+    oscillator.type = oscillatorType
+    console.log('Oscillator is now ' + oscillatorType)
+  }
 
-    // canvasDraw()
+  function updateFrequency () {
+    oscillator.frequency.value = freq.value
+    console.log('Current frequency is ' + freq.value)
   }
 
   appInit = true
