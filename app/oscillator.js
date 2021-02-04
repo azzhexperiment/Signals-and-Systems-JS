@@ -45,6 +45,8 @@ function init () {
 
   type.onchange = updateOscillatorType
   freq.onmousemove = updateFrequency
+  freq.onclick = updateFrequency
+  freq.onchange = updateFrequency
   freq.ontouchmove = updateFrequency
 
   console.log('The oscillator frequency is ' + freq.value)
