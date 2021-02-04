@@ -42,8 +42,7 @@ function init () {
 
   oscillator.start()
 
-
-  freq.onchange = updateFrequency
+  freq.onfocus = updateFrequency
 
   console.log('The oscillator type is ' + oscillatorType)
   console.log('The oscillator frequency is ' + freq.value)
