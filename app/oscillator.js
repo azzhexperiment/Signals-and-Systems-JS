@@ -50,6 +50,7 @@ function init () {
   freq.ontouchmove = updateFrequency
 
   console.log('The oscillator frequency is ' + freq.value)
+  console.log('Current mute status is: ' + play.getAttribute('data-muted'))
 
   play.onclick = function () {
     if (play.getAttribute('data-muted') === 'false') {
