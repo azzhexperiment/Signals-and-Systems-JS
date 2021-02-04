@@ -53,11 +53,13 @@ function init () {
 
   play.onclick = function () {
     if (play.getAttribute('data-muted') === 'false') {
-      gainNode.disconnect(audioCtx.destination)
+      // gainNode.disconnect(audioCtx.destination)
+      gainNode.gain.setValueAtTime(0, audioCtx.currentTime)
       play.setAttribute('data-muted', 'true')
       play.innerHTML = 'Make some noise'
     } else {
-      gainNode.connect(audioCtx.destination)
+      // gainNode.connect(audioCtx.destination)
+      gainNode.gain.setValueAtTime(1, audioCtx.currentTime)
       play.setAttribute('data-muted', 'false')
       play.innerHTML = 'Mute'
     }
