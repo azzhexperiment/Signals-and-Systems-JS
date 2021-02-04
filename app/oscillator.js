@@ -1,7 +1,6 @@
 let appInit = false
 
 const type = document.getElementById('oscillator-type')
-const typeValue = type.value
 // const amp = document.getElementById('amp')
 const freq = document.getElementById('freq')
 // const ampReading = document.getElementById('amp-reading')
@@ -45,7 +44,8 @@ function init () {
   oscillator.start()
 
   type.onchange = updateOscillatorType
-  freq.onfocus = updateFrequency
+  freq.onmousemove = updateFrequency
+  freq.ontouchmove = updateFrequency
 
   console.log('The oscillator type is ' + oscillatorType)
   console.log('The oscillator frequency is ' + freq.value)
@@ -66,7 +66,7 @@ function init () {
   oscillator.onended = () => console.log('Oscillator ended')
 
   function updateOscillatorType () {
-    oscillator.type = oscillatorType
+    oscillator.type = type.value
     console.log('Oscillator is now ' + oscillatorType)
   }
 
