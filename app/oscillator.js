@@ -57,11 +57,15 @@ function init () {
       gainNode.gain.setValueAtTime(0, audioCtx.currentTime)
       play.setAttribute('data-muted', 'true')
       play.innerHTML = 'Make some noise'
+
+      console.log("Gain set to 0. Should be muted.")
     } else {
       // gainNode.connect(audioCtx.destination)
       gainNode.gain.setValueAtTime(1, audioCtx.currentTime)
       play.setAttribute('data-muted', 'false')
       play.innerHTML = 'Mute'
+
+      console.log("Gain set to 1. Should have sound.")
     }
   }
 
