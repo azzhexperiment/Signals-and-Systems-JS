@@ -47,7 +47,6 @@ function init () {
   freq.onmousemove = updateFrequency
   freq.ontouchmove = updateFrequency
 
-  console.log('The oscillator type is ' + oscillatorType)
   console.log('The oscillator frequency is ' + freq.value)
 
   play.onclick = function () {
@@ -67,12 +66,12 @@ function init () {
 
   function updateOscillatorType () {
     oscillator.type = type.value
-    console.log('Oscillator is now ' + oscillatorType)
+    console.log('Current oscillator: ' + oscillatorType)
   }
 
   function updateFrequency () {
     oscillator.frequency.value = freq.value
-    console.log('Current frequency is ' + freq.value)
+    console.log('Current frequency: ' + freq.value)
   }
 
   appInit = true
