@@ -66,7 +66,7 @@ function init () {
 
   function updateOscillatorType () {
     oscillator.type = type.value
-    console.log('Current oscillator: ' + oscillatorType)
+    console.log('Current oscillator: ' + type.value)
   }
 
   function updateFrequency () {
