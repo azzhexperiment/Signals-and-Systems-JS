@@ -1,7 +1,7 @@
-const ampInput = document.getElementById("amp")
-const ampOutput = document.getElementById("ampOutput")
-const freqInput = document.getElementById("freq")
-const freqOutput = document.getElementById("freqOutput")
+const ampInput = document.getElementById('amp')
+const ampOutput = document.getElementById('ampOutput')
+const freqInput = document.getElementById('freq')
+const freqOutput = document.getElementById('freqOutput')
 const stopAudioBtn = document.getElementById('stop')
 const playAudioBtn = document.getElementById('play')
 
@@ -9,29 +9,27 @@ ampOutput.innerHTML = ampInput.value
 freqOutput.innerHTML = freqInput.value
 
 ampInput.oninput = function () {
-	ampOutput.innerHTML = this.value
+  ampOutput.innerHTML = this.value
 }
 
 freqInput.oninput = function () {
-	freqOutput.innerHTML = this.value
+  freqOutput.innerHTML = this.value
 }
 
 // create web audio api context
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
 // create Oscillator node
-const oscillator = audioCtx.createOscillator();
+const oscillator = audioCtx.createOscillator()
 
-oscillator.type = 'square';
-oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
-oscillator.connect(audioCtx.destination);
+oscillator.type = 'square'
+oscillator.frequency.setValueAtTime(440, audioCtx.currentTime) // value in hertz
+oscillator.connect(audioCtx.destination)
 
 playAudioBtn.addEventListener('click', oscillator.start())
 stopAudioBtn.addEventListener('click', oscillator.stop())
 
-
 // let osc, playing, freq, amp;
-
 
 // ampOutput.innerHTML = ampInput.value
 // freqOutput.innerHTML = freqInput.value;
