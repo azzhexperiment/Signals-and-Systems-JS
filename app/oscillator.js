@@ -1,14 +1,16 @@
 let appInit = false
 
 const type = document.getElementById('oscillator-type')
-// const amp = document.getElementById('amp')
 const freq = document.getElementById('freq')
-// const ampReading = document.getElementById('amp-reading')
 const freqReading = document.getElementById('freq-reading')
 const play = document.getElementById('play')
 
-// ampReading.innerHTML = amp.value
+// Display initial frequency beneath scrollbar
 freqReading.innerHTML = freq.value
+
+// const amp = document.getElementById('amp')
+// const ampReading = document.getElementById('amp-reading')
+// ampReading.innerHTML = amp.value
 
 // amp.oninput = function () {
 //   ampReading.innerHTML = this.value
@@ -18,6 +20,7 @@ freq.oninput = function () {
   freqReading.innerHTML = this.value
 }
 
+// TODO: update play status once right after init
 play.addEventListener('click', init)
 
 function init () {
@@ -36,23 +39,52 @@ function init () {
   oscillator.connect(gainNode)
   gainNode.connect(audioCtx.destination)
 
-  updateOscillatorType
+  // Might need to use $this. Or maybe not, since setOscType and setFreq works
+  setOscillatorType
+  startOscillator
 
-  oscillator.frequency.setValueAtTime(freq.value, audioCtx.currentTime)
-  oscillator.connect(audioCtx.destination)
+  // Triggers to update oscillator properties
+  type.onchange = setOscillatorType
+  freq.onmousemove = setOscillatorFrequency
+  freq.onclick = setOscillatorFrequency
+  freq.onchange = setOscillatorFrequency
+  freq.ontouchmove = setOscillatorFrequency
 
-  oscillator.start()
-
-  type.onchange = updateOscillatorType
-  freq.onmousemove = updateFrequency
-  freq.onclick = updateFrequency
-  freq.onchange = updateFrequency
-  freq.ontouchmove = updateFrequency
-
-  console.log('The oscillator frequency is ' + freq.value)
   console.log('Current mute status is: ' + play.getAttribute('data-muted'))
 
-  play.onclick = function () {
+  play.onclick = toggleAudioOutput
+
+  // Catch when oscillator ends
+  oscillator.onended = () => console.log('Oscillator ended')
+
+  function startOscillator () {
+    oscillator.frequency.setValueAtTime(freq.value, audioCtx.currentTime)
+    oscillator.connect(audioCtx.destination)
+
+    oscillator.start()
+    console.log('Oscillator started')
+  }
+
+  /**
+   * Sets oscillator type based on user's choice
+   */
+  function setOscillatorType () {
+    oscillator.type = type.value
+    console.log('Current oscillator: ' + type.value)
+  }
+
+  /**
+   * Set oscillator frequency based on current value on frequency scrollbar
+   */
+  function setOscillatorFrequency () {
+    oscillator.frequency.value = freq.value
+    console.log('Current frequency: ' + freq.value)
+  }
+
+  /**
+   * Toggles audio output on/off
+   */
+  function toggleAudioOutput () {
     if (play.getAttribute('data-muted') === 'false') {
       // gainNode.disconnect(audioCtx.destination)
       gainNode.gain.setValueAtTime(0, audioCtx.currentTime)
@@ -70,18 +102,6 @@ function init () {
     }
   }
 
-  // Catch when oscillator ends
-  oscillator.onended = () => console.log('Oscillator ended')
-
-  function updateOscillatorType () {
-    oscillator.type = type.value
-    console.log('Current oscillator: ' + type.value)
-  }
-
-  function updateFrequency () {
-    oscillator.frequency.value = freq.value
-    console.log('Current frequency: ' + freq.value)
-  }
 
   appInit = true
 }
