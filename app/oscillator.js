@@ -39,9 +39,9 @@ function init () {
   gainNode.connect(audioCtx.destination)
 
   // Might need to use $this. Or maybe not, since setOscType and setFreq works
-  setOscillatorType
-  startOscillator
-  toggleAudioOutput
+  new setOscillatorType
+  new startOscillator
+  new toggleAudioOutput
 
   // Triggers to update oscillator properties
   type.onchange = setOscillatorType
