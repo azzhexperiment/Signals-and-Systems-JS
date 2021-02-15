@@ -22,6 +22,7 @@ freq.oninput = function () { freqReading.innerHTML = this.value }
 play.addEventListener('click', init)
 
 function init () {
+  console.log('App initiated')
   // Prevent re-initiation of app
   // if (appInit) return
 
