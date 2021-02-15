@@ -6,6 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Oscillator</title>
 
+	<!--[if le IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="scripts/respond.js"></script>
+		<![endif]-->
+
 	<style>
 		html,
 		body {
@@ -88,6 +93,13 @@
 		} */
 
 	</style>
+
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+		crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -101,44 +113,68 @@
 
 	<main>
 		<div class="controls">
-			<button class="start">Start</button>
-			<button class="stop" disabled>Stop</button>
+			<button type="button" class="start">Start</button>
+			<button type="button" class="stop" disabled>Stop</button>
 		</div>
+
 		<hr>
+
 		<h1>Waveform</h1>
 		<div class="waveforms">
-			<button data-waveform="sine">Sine</button>
-			<button data-waveform="square">Square</button>
-			<button data-waveform="sawtooth">Sawtooth</button>
-			<button data-waveform="triangle">Triangle</button>
+			<button type="button" data-waveform="sine">Sine</button>
+			<button type="button" data-waveform="square">Square</button>
+			<button type="button" data-waveform="sawtooth">Sawtooth</button>
+			<button type="button" data-waveform="triangle">Triangle</button>
 		</div>
+
 		<hr>
+
 		<h1>Notes</h1>
 		<div class="notes">
-			<button data-note="0">unison</button>
-			<button data-note="300">minor-third</button>
-			<button data-note="600">tritone</button>
-			<button data-note="900">minor-seventh</button>
-			<button data-note="1200">octave</button>
+			<button type="button" data-note="0">unison</button>
+			<button type="button" data-note="300">minor-third</button>
+			<button type="button" data-note="600">tritone</button>
+			<button type="button" data-note="900">minor-seventh</button>
+			<button type="button" data-note="1200">octave</button>
 		</div>
-		<div class="display">
-			<label for="freq">Frequency <span class="freq">440Hz</span>
-				<input class="freq-slider" name="freq" type="range" min="0"
-					max="20000" step="1" value="220">
-			</label>
-			<label for="detune">Detune <span class="detune">0 cents</span>
-				<input class="detune-slider" name="detune" type="range"
-					min="-1000" max="1000" step="1" value="0">
-			</label>
-			<label for="gain">Gain <span class="gain">1</span>
 
-				<input class="gain-slider" name="gain" type="range" min="0"
-					max="1" step="0.1" value="1">
-			</label>
+		<div class="display">
+			<div class="row">
+				<div class="col">
+					<label for="freq">
+						Frequency <span class="freq">440Hz</span>
+					</label>
+					<input class="freq-slider" name="freq" type="range" min="0"
+						max="20000" step="1" value="220">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="detune">
+						Detune <span class="detune">0 cents</span>
+					</label>
+					<input class="detune-slider" name="detune" type="range"
+						min="-1000" max="1000" step="1" value="0">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="gain">
+						Gain <span class="gain">1</span>
+					</label>
+					<input class="gain-slider" name="gain" type="range" min="0"
+						max="1" step="0.1" value="1">
+				</div>
+			</div>
 		</div>
 	</main>
 
 	<script src="app/oscillator.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+
 </body>
 
 </html>
