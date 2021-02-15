@@ -1,53 +1,52 @@
-let appInit = false
+// let appInit = false
 
+const play = document.getElementById('play')
 const type = document.getElementById('oscillator-type')
 const freq = document.getElementById('freq')
 const freqReading = document.getElementById('freq-reading')
-const play = document.getElementById('play')
 
 // Display initial frequency beneath scrollbar
 freqReading.innerHTML = freq.value
+
+// Update frequency input for oscillator
+freq.oninput = function () { freqReading.innerHTML = this.value }
 
 // const amp = document.getElementById('amp')
 // const ampReading = document.getElementById('amp-reading')
 // ampReading.innerHTML = amp.value
 
-// amp.oninput = function () {
-//   ampReading.innerHTML = this.value
-// }
+// amp.oninput = function () { ampReading.innerHTML = this.value }
 
-freq.oninput = function () {
-  freqReading.innerHTML = this.value
-}
 
 // TODO: update play status once right after init
 play.addEventListener('click', init)
 
 function init () {
   // Prevent re-initiation of app
-  if (appInit) return
+  // if (appInit) return
 
   // Create web audio api context
   const AudioContext = window.AudioContext || window.webkitAudioContext
   const audioCtx = new AudioContext()
 
-  // Create Oscillator and gain node
+  // Init oscillator and gain nodes
   const oscillator = audioCtx.createOscillator()
   const gainNode = audioCtx.createGain()
 
-  // Connect oscillator to gain node to speakers
+  // Apply gain to signal source
   oscillator.connect(gainNode)
   gainNode.connect(audioCtx.destination)
 
   // Might need to use $this. Or maybe not, since setOscType and setFreq works
   setOscillatorType
   startOscillator
+  toggleAudioOutput
 
   // Triggers to update oscillator properties
   type.onchange = setOscillatorType
-  freq.onmousemove = setOscillatorFrequency
   freq.onclick = setOscillatorFrequency
   freq.onchange = setOscillatorFrequency
+  freq.onmousemove = setOscillatorFrequency
   freq.ontouchmove = setOscillatorFrequency
 
   console.log('Current mute status is: ' + play.getAttribute('data-muted'))
@@ -91,17 +90,16 @@ function init () {
       play.setAttribute('data-muted', 'true')
       play.innerHTML = 'Make some noise'
 
-      console.log("Gain set to 0. Should be muted.")
+      console.log('Gain set to 0. Should be muted.')
     } else {
       // gainNode.connect(audioCtx.destination)
       gainNode.gain.setValueAtTime(1, audioCtx.currentTime)
       play.setAttribute('data-muted', 'false')
       play.innerHTML = 'Mute'
 
-      console.log("Gain set to 1. Should have sound.")
+      console.log('Gain set to 1. Should have sound.')
     }
   }
 
-
-  appInit = true
+  // appInit = true
 }
