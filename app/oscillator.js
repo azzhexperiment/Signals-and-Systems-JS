@@ -1,4 +1,4 @@
-// let appInit = false
+let appInit = false
 
 const play = document.getElementById('play')
 const type = document.getElementById('oscillator-type')
@@ -22,9 +22,10 @@ freq.oninput = function () { freqReading.innerHTML = this.value }
 play.addEventListener('click', init)
 
 function init () {
-  console.log('App initiated')
   // Prevent re-initiation of app
-  // if (appInit) return
+  if (appInit) return
+
+  console.log('App initiated')
 
   // Create web audio api context
   const AudioContext = window.AudioContext || window.webkitAudioContext
@@ -102,5 +103,5 @@ function init () {
     }
   }
 
-  // appInit = true
+  appInit = true
 }
