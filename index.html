@@ -91,66 +91,52 @@
 </head>
 
 <body>
-	<a href="voice.html">Voice change</a>
+	<header>
+		<h1>Signals and Systems</h1>
+	</header>
 
-	<!-- <h3>Choose your oscillator</h3>
+	<nav>
+		<a href="voice.html">Voice change</a>
+	</nav>
 
-	<select name="oscillatorType" id="oscillator-type">
-		<option value="sine">Sine</option>
-		<option value="triangle">Triangle</option>
-		<option value="sawtooth">sawtooth</option>
-		<option value="square">Square</option>
-	</select>
+	<main>
+		<div class="controls">
+			<button class="start">Start</button>
+			<button class="stop" disabled>Stop</button>
+		</div>
+		<hr>
+		<h1>Waveform</h1>
+		<div class="waveforms">
+			<button data-waveform="sine">Sine</button>
+			<button data-waveform="square">Square</button>
+			<button data-waveform="sawtooth">Sawtooth</button>
+			<button data-waveform="triangle">Triangle</button>
+		</div>
+		<hr>
+		<h1>Notes</h1>
+		<div class="notes">
+			<button data-note="0">unison</button>
+			<button data-note="300">minor-third</button>
+			<button data-note="600">tritone</button>
+			<button data-note="900">minor-seventh</button>
+			<button data-note="1200">octave</button>
+		</div>
+		<div class="display">
+			<label for="freq">Frequency <span class="freq">440Hz</span>
+				<input class="freq-slider" name="freq" type="range" min="0"
+					max="20000" step="1" value="220">
+			</label>
+			<label for="detune">Detune <span class="detune">0 cents</span>
+				<input class="detune-slider" name="detune" type="range"
+					min="-1000" max="1000" step="1" value="0">
+			</label>
+			<label for="gain">Gain <span class="gain">1</span>
 
-	<div class="slidecontainer">
-		<!-- TODO: add accordion for why this range is chosen ->
-
-		<input type="range" min="20" max="20000" value="440" class="slider"
-			id="freq">
-		<p>Frequency: <span id="freq-reading"></span></p>
-
-		<!-- <input type="range" min="0" max="10" value="1" class="slider" id="amp">
-		<p>Amplitude: <span id="amp-reading"></span></p> ->
-	</div>
-
-	<button type="button" id="play" data-muted="true">Make some noise</button> -->
-
-	<div class="controls">
-		<button class="start">Start</button>
-		<button class="stop" disabled>Stop</button>
-	</div>
-	<hr>
-	<h1>Waveform</h1>
-	<div class="waveforms">
-		<button data-waveform="sine">Sine</button>
-		<button data-waveform="square">Square</button>
-		<button data-waveform="sawtooth">Sawtooth</button>
-		<button data-waveform="triangle">Triangle</button>
-	</div>
-	<hr>
-	<h1>Notes</h1>
-	<div class="notes">
-		<button data-note="0">unison</button>
-		<button data-note="300">minor-third</button>
-		<button data-note="600">tritone</button>
-		<button data-note="900">minor-seventh</button>
-		<button data-note="1200">octave</button>
-	</div>
-	<div class="display">
-		<label for="freq">Frequency <span class="freq">440Hz</span>
-			<input class="freq-slider" name="freq" type="range" min="0"
-				max="20000" step="1" value="220">
-		</label>
-		<label for="detune">Detune <span class="detune">0 cents</span>
-			<input class="detune-slider" name="detune" type="range" min="-1000"
-				max="1000" step="1" value="0">
-		</label>
-		<label for="gain">Gain <span class="gain">1</span>
-
-			<input class="gain-slider" name="gain" type="range" min="0" max="1"
-				step="0.1" value="1">
-		</label>
-	</div>
+				<input class="gain-slider" name="gain" type="range" min="0"
+					max="1" step="0.1" value="1">
+			</label>
+		</div>
+	</main>
 
 	<script src="app/oscillator.js"></script>
 </body>
