@@ -2,7 +2,7 @@
 var button = document.getElementById('install-btn')
 
 if (navigator.mozApps) {
-  var manifest_url = location.href + 'manifest.webapp'
+  var manifest_url = location.href + 'app.webmanifest'
 
   function install (ev) {
     ev.preventDefault()
@@ -17,7 +17,7 @@ if (navigator.mozApps) {
     // installapp.error.name
       alert(installLocFind.error.name)
     }
-  };
+  }
 
   // call install() on click if the app isn't already installed. If it is, hide the button.
 
@@ -28,7 +28,7 @@ if (navigator.mozApps) {
       button.style.display = 'none'
     } else {
       button.addEventListener('click', install, false)
-    };
+    }
   }
 } else {
   button.style.display = 'none'
