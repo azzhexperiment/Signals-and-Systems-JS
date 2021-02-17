@@ -11,7 +11,9 @@ const loopEnd = document.querySelector('.loop-end')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate = document.querySelector('.rate')
 
+console.log(loopEnd)
 console.log(playbackSlider)
+console.log(playbackRate)
 
 // load our sound
 init()
