@@ -4,28 +4,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Voice change</title>
+	<title>Voice Warp</title>
 
 	<!--[if le IE 9]>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 		<script src="scripts/respond.js"></script>
 	<![endif]-->
-	<link href="assets/css/voice.css" rel="stylesheet" type="text/css">
 
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-		crossorigin="anonymous">
+	<link rel="manifest" href="app.webmanifest">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/voice.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 </head>
 
 <body>
-	<div class="wrapper">
+	<header>
+		<h1>Voice Warp</h1>
+		<h2></h2>
+	</header>
 
-		<header>
-			<h1>Voice-change-O-matic</h1>
-		</header>
+	<nav>
+		<a href="index.html">Oscillator</a><br>
+		<a href="voice.html">Voice warp</a><br>
+		<a href="playback.html">Playback rate</a><br>
+		<a href="filters.html">Filters</a><br>
+	</nav>
 
+	<main class="wrapper">
 		<canvas class="visualizer" width="640" height="100"></canvas>
 
 		<form class="controls">
@@ -51,45 +56,17 @@
 				<a class="mute">Mute</a>
 			</div>
 		</form>
-	</div>
+	</main>
 
 	<label for="toggle">❔</label>
 	<input type="checkbox" id="toggle">
 	<aside>
-		<h2>Information</h2>
-
-		<p>Voice-change-O-matic is built using:</p>
-
-		<ul>
-			<li><a
-					href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a>,
-				which is currently supported in Firefox, Opera (desktop/mobile)
-				and Chrome (desktop only.) Firefox requires no prefix; the
-				others require <code>webkit</code> prefixes.</li>
-
-			<li><a
-					href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web
-					Audio API</a>, which is currently supported in Firefox,
-				Chrome, Safari (desktop/mobile) and Opera (desktop only).
-				Firefox and Opera require no prefix; Chrome requires
-				<code>webkit</code> prefixes.
-			</li>
-		</ul>
-
 		<button id="install-btn">Install app</button>
 	</aside>
 
-	<!-- The following element pulls in the script for the default template functionality -->
-
-	<script src="app/install.js"></script>
-
-	<!-- Below is your custom application script -->
+	<!-- SCRIPTS -->
 	<script src="app/voice.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-		crossorigin="anonymous"></script>
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
