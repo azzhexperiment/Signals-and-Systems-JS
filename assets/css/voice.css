@@ -6,8 +6,6 @@ body {
 }
 
 h1, h2, label {
-    font-size: 3rem;
-    font-family: 'Nova Square', cursive;
     text-align: center;
     color: black;
     text-shadow: -1px -1px 1px #aaa,
@@ -100,8 +98,6 @@ a#activated {
 /* || Checkbox hack to control information box display */
 
 label[for="toggle"] {
-	font-family: 'NotoColorEmoji';
-	font-size: 3rem;
 	position: absolute;
 	top: 4px;
 	right: 5px;
@@ -175,7 +171,7 @@ a:hover, a:focus {
    border-left: 2px solid black;
   }
 
-  /* Toggled State of information box */ 
+  /* Toggled State of information box */
   input[type=checkbox]:checked ~ aside {
     transform: translateX(-480px);
   }
