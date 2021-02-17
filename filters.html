@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Filters</title>
+
+	<!--[if le IE 9]>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="scripts/respond.js"></script>
+	<![endif]-->
+
+	<link rel="manifest" href="app.webmanifest">
+
+	<style>
+		body {
+			background-color: rgb(250, 250, 250);
+			font-family: monospace;
+		}
+
+		button {
+			display: inline-block;
+			margin-bottom: 20px;
+		}
+
+		label {
+			display: block;
+			line-height: 20px;
+		}
+
+		input {
+			display: inline-block;
+			width: 45%;
+		}
+
+		span {
+			display: inline-block;
+			width: 75px;
+			text-align: center;
+			font-weight: bold;
+			border: 1px solid #efefef;
+			border-radius: 3px;
+			background-color: white;
+		}
+
+		hr {
+			border-color: rgba(200, 200, 200, 0.1);
+		}
+
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/playback.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+
+<body>
+	<header>
+		<h1>Filters</h1>
+	</header>
+
+	<nav>
+		<a href="index.html">Oscillator</a><br>
+		<a href="voice.html">Voice warp</a><br>
+		<a href="playback.html">Playback rate</a><br>
+	</nav>
+
+	<main class="wrapper">
+		<div class='controls'>
+			<button class="play" disabled>loading...</button>
+			<button class="stop" disabled>stop</button>
+		</div>
+		<div class='play-controls'>
+			<label for='loop'>loop
+				<input type='checkbox' name='loop' class="loop" />
+			</label>
+		</div>
+		<div class='filter-controls'>
+			<label for='filterFreq'>filter frequency <span
+					class='freq'>2500Hz</span>
+
+				<input class='filter-slider' name='filterFreq' type='range'
+					min='0' max='20000' step='10' value='2500' disabled />
+			</label>
+			<label>quality (Q) value <span class='filter-q-value'>1</span>
+				<input class="filter-q-slider" type="range" min=".0001" max="10"
+					step=".0005" value="1" disabled />
+			</label>
+			<label>filter gain value <span class='filter-gain-value'>0</span>
+				<input class="filter-gain-slider" type="range" min="-40"
+					max="40" step="1" value="0" disabled />
+			</label>
+			<p>filter type</p>
+			<select name="filterType" class="filtertype">
+				<option value="lowpass">lowpass</option>
+				<option value="highpass">highpass</option>
+				<option value="bandpass">bandpass</option>
+				<option value="lowshelf">lowshelf</option>
+				<option value="highshelf">highshelf</option>
+				<option value="peaking">peaking</option>
+				<option value="notch">notch</option>
+				<option value="allpass">allpass</option>
+			</select>
+		</div>
+	</main>
+
+	<!-- SCRIPTS -->
+	<script src="app/playback.js"></script>
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
