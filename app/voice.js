@@ -79,7 +79,7 @@ function init () {
 
   const ajaxRequest = new window.XMLHttpRequest()
 
-  ajaxRequest.open('GET', 'https://mdn.github.io/voice-change-o-matic/audio/concert-crowd.ogg', true)
+  ajaxRequest.open('GET', 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/concert-crowd.ogg', true)
 
   ajaxRequest.responseType = 'arraybuffer'
 
