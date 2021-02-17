@@ -1,6 +1,8 @@
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
-let sampleBuffer; let sound; const playButton = document.querySelector('.play')
+let sampleBuffer
+let sound
+const playButton = document.querySelector('.play')
 const stopButton = document.querySelector('.stop')
 let loop = false
 const loopButton = document.querySelector('.loop')
@@ -42,7 +44,7 @@ loopEnd.oninput = function () {
 
 // function to load sounds via AJAX
 function loadSound (url) {
-  var request = new XMLHttpRequest()
+  var request = new window.XMLHttpRequest()
   request.open('GET', url, true)
   request.responseType = 'arraybuffer'
 
