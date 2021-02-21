@@ -56,81 +56,87 @@
 	</style>
 
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
 </head>
 
 <body>
-	<header>
-		<h1>Signals and Systems</h1>
-	</header>
+	<div class="container">
+		<header class="py-2">
+			<h2 class="text-center">
+				<a class="text-decoration-none" href="index.html">
+					<img src="assets/img/icons-192.png" width="30" height="30">
+					Signals and Systems
+				</a>
+			</h2>
+		</header>
 
-	<nav>
-		<a href="index.html">Oscillator</a><br>
-		<a href="voice.html">Voice warp</a><br>
-		<a href="playback.html">Playback rate</a><br>
-		<a href="filters.html">Filters</a><br>
-	</nav>
+		<nav class="navbar nav-pills nav-fill navbar-light bg-light py-15">
+			<a class="nav-item nav-link active" href="#">Oscillator</a>
+			<a class="nav-item nav-link" href="voice.html">Voice</a>
+			<a class="nav-item nav-link" href="playback.html">Playback</a>
+			<a class="nav-item nav-link" href="filters.html">Filters</a>
+		</nav>
 
-	<main>
-		<div class="controls">
-			<button type="button" class="start">Start</button>
-			<button type="button" class="stop" disabled>Stop</button>
-		</div>
+		<main>
+			<div class="controls">
+				<button type="button" class="start">Start</button>
+				<button type="button" class="stop" disabled>Stop</button>
+			</div>
 
-		<hr>
+			<hr>
 
-		<h1>Waveform</h1>
-		<div class="waveforms">
-			<button type="button" data-waveform="sine">Sine</button>
-			<button type="button" data-waveform="square">Square</button>
-			<button type="button" data-waveform="sawtooth">Sawtooth</button>
-			<button type="button" data-waveform="triangle">Triangle</button>
-		</div>
+			<h1>Waveform</h1>
+			<div class="waveforms">
+				<button type="button" data-waveform="sine">Sine</button>
+				<button type="button" data-waveform="square">Square</button>
+				<button type="button" data-waveform="sawtooth">Sawtooth</button>
+				<button type="button" data-waveform="triangle">Triangle</button>
+			</div>
 
-		<hr>
+			<hr>
 
-		<h1>Notes</h1>
-		<div class="notes">
-			<button type="button" data-note="0">unison</button>
-			<button type="button" data-note="300">minor-third</button>
-			<button type="button" data-note="600">tritone</button>
-			<button type="button" data-note="900">minor-seventh</button>
-			<button type="button" data-note="1200">octave</button>
-		</div>
+			<h1>Notes</h1>
+			<div class="notes">
+				<button type="button" data-note="0">unison</button>
+				<button type="button" data-note="300">minor-third</button>
+				<button type="button" data-note="600">tritone</button>
+				<button type="button" data-note="900">minor-seventh</button>
+				<button type="button" data-note="1200">octave</button>
+			</div>
 
-		<div class="display">
-			<div class="row">
-				<div class="col">
-					<label for="freq">
-						Frequency <span class="freq">440Hz</span>
-					</label>
-					<input class="freq-slider" name="freq" type="range" min="0"
-						max="20000" step="1" value="220">
+			<div class="display">
+				<div class="row">
+					<div class="col">
+						<label for="freq">
+							Frequency <span class="freq">440Hz</span>
+						</label>
+						<input class="freq-slider" name="freq" type="range"
+							min="0" max="20000" step="1" value="220">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label for="detune">
+							Detune <span class="detune">0 cents</span>
+						</label>
+						<input class="detune-slider" name="detune" type="range"
+							min="-1000" max="1000" step="1" value="0">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label for="gain">
+							Gain <span class="gain">1</span>
+						</label>
+						<input class="gain-slider" name="gain" type="range"
+							min="0" max="1" step="0.1" value="1">
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col">
-					<label for="detune">
-						Detune <span class="detune">0 cents</span>
-					</label>
-					<input class="detune-slider" name="detune" type="range"
-						min="-1000" max="1000" step="1" value="0">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="gain">
-						Gain <span class="gain">1</span>
-					</label>
-					<input class="gain-slider" name="gain" type="range" min="0"
-						max="1" step="0.1" value="1">
-				</div>
-			</div>
-		</div>
-	</main>
+		</main>
+	</div>
 
 	<!-- SCRIPTS -->
-	<script src="app/oscillator.js"></script>
+	<script src="assets/js/oscillator.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 

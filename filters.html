@@ -8,63 +8,26 @@
 
 	<link rel="manifest" href="app.webmanifest">
 
-	<style>
-		button {
-			display: inline-block;
-			margin-bottom: 20px;
-		}
-
-		label {
-			display: block;
-			line-height: 20px;
-		}
-
-		input {
-			display: inline-block;
-			width: 45%;
-		}
-
-		span {
-			display: inline-block;
-			width: 75px;
-			text-align: center;
-			font-weight: bold;
-			border: 1px solid #efefef;
-			border-radius: 3px;
-			background-color: white;
-		}
-
-		hr {
-			border-color: rgba(200, 200, 200, 0.1);
-		}
-
-	</style>
-
-	<link rel="stylesheet" type="text/css" href="assets/css/filters.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/app.css">
 </head>
 
 <body>
 	<div class="container">
-		<header>
-			<h1>Filters</h1>
+		<header class="py-2">
+			<h2 class="text-center">
+				<a class="text-decoration-none" href="index.html">
+					<img src="assets/img/icons-192.png" width="30" height="30">
+					Signals and Systems
+				</a>
+			</h2>
 		</header>
 
-		<nav>
-			<ul class="nav justify-content-center">
-				<li class="nav-item">
-					<a class="nav-link" href="index.html">Oscillator</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="voice.html">Voice warp</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="playback.html">Playback rate</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Filters</a>
-				</li>
-			</ul>
+		<nav class="navbar nav-pills nav-fill navbar-light bg-light py-15">
+			<a class="nav-item nav-link" href="index.html">Oscillator</a>
+			<a class="nav-item nav-link" href="voice.html">Voice</a>
+			<a class="nav-item nav-link" href="playback.html">Playback</a>
+			<a class="nav-item nav-link active" href="#">Filters</a>
 		</nav>
 
 		<main class="wrapper">
@@ -113,7 +76,7 @@
 	</div>
 
 	<!-- SCRIPTS -->
-	<script src="app/filters.js"></script>
+	<script src="assets/js/filters.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
