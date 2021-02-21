@@ -4,104 +4,75 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Filters</title>
-
-	<!--[if le IE 9]>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-		<script src="scripts/respond.js"></script>
-	<![endif]-->
+	<title>Playback Rate</title>
 
 	<link rel="manifest" href="app.webmanifest">
 
-	<style>
-		button {
-			display: inline-block;
-			margin-bottom: 20px;
-		}
-
-		label {
-			display: block;
-			font-family: monospace;
-			line-height: 20px;
-			text-shadow: 1px 1px 3px #ccc;
-		}
-
-		input {
-			display: inline-block;
-			width: 45%;
-		}
-
-		span {
-			display: inline-block;
-			width: 75px;
-			text-align: center;
-			font-weight: bold;
-			border: 1px solid #efefef;
-			border-radius: 3px;
-			background-color: white;
-		}
-
-		hr {
-			border-color: rgba(200, 200, 200, 0.1);
-		}
-
-	</style>
-
-	<link rel="stylesheet" type="text/css" href="assets/css/playback.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 </head>
 
 <body>
-	<header>
-		<h1>Filters</h1>
-	</header>
+	<div class="container">
+		<header class="py-2">
+			<h2 class="text-center">
+				<a class="text-decoration-none" href="index.html">
+					<img src="assets/img/icons-192.png" width="30" height="30">
+					Signals and Systems
+				</a>
+			</h2>
+		</header>
 
-	<nav>
-		<a href="index.html">Oscillator</a><br>
-		<a href="voice.html">Voice warp</a><br>
-		<a href="playback.html">Playback rate</a><br>
-		<a href="filters.html">Filters</a><br>
-	</nav>
+		<nav class="navbar nav-pills nav-fill navbar-light bg-light py-15">
+			<a class="nav-item nav-link" href="oscillator.html">Oscillator</a>
+			<a class="nav-item nav-link" href="voice.html">Voice</a>
+			<a class="nav-item nav-link active" href="#">Playback</a>
+			<a class="nav-item nav-link" href="filters.html">Filters</a>
+		</nav>
 
-	<main class="wrapper">
-		<div class="controls">
-			<button class="play" disabled>Loading...</button>
-			<button class="stop" disabled>Stop</button>
-		</div>
-		<div class="play-controls">
-			<div class="row">
-				<div class="col">
-					<label for="loop">loop
-						<input type="checkbox" name="loop" class="loop">
-					</label>
-				</div>
+		<main class="py-3">
+			<div class="controls">
+				<button class="play" disabled>Loading...</button>
+				<button class="stop" disabled>Stop</button>
 			</div>
-			<div class="row">
-				<div class="col">
-					<label for="loop-start">loop start (seconds)
-						<input class="loop-start" type="number" min="0" max="10"
-							step="1" value="0" name="loop-start" disabled>
-					</label>
+			<div class="play-controls">
+				<div class="row">
+					<div class="col">
+						<label for="loop">loop
+							<input type="checkbox" name="loop" class="loop">
+						</label>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="loop-end">loop end (seconds)
-						<input class="loop-end" type="number" min="0" max="10"
-							step="1" value="0" name="loop-end" disabled>
-					</label>
+				<div class="row">
+					<div class="col">
+						<label for="loop-start">loop start (seconds)
+							<input class="loop-start" type="number" min="0"
+								max="10" step="1" value="0" name="loop-start"
+								disabled>
+						</label>
+					</div>
 				</div>
+				<div class="row">
+					<div class="col">
+						<label for="loop-end">loop end (seconds)
+							<input class="loop-end" type="number" min="0"
+								max="10" step="1" value="0" name="loop-end"
+								disabled>
+						</label>
+					</div>
+				</div>
+				<hr>
+				<label for="playbackRate">playback rate <span
+						class="rate">1</span>
+					<input class="playback-slider" name="playbackRate"
+						type="range" min="0" max="10" step="0.05" value="1"
+						disabled>
+				</label>
 			</div>
-			<hr>
-			<label for="playbackRate">playback rate <span class="rate">1</span>
-				<input class="playback-slider" name="playbackRate" type="range"
-					min="0" max="10" step="0.05" value="1" disabled>
-			</label>
-		</div>
-	</main>
+		</main>
+	</div>
 
 	<!-- SCRIPTS -->
-	<script src="app/playback.js"></script>
+	<script src="assets/js/playback.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 

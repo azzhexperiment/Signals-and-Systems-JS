@@ -1,4 +1,4 @@
-const heading = document.querySelector('h2')
+const heading = document.querySelector('h3')
 heading.textContent = 'CLICK ANYWHERE TO START'
 document.body.addEventListener('click', init)
 

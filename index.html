@@ -6,131 +6,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Oscillator</title>
 
-	<!--[if le IE 9]>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="scripts/respond.js"></script>
-		<![endif]-->
-
 	<link rel="manifest" href="app.webmanifest">
 
-	<!-- STYLES -->
-	<style>
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: rgb(250, 250, 250);
-		}
-
-		button {
-			display: inline-block;
-			margin-bottom: 20px;
-		}
-
-		label {
-			display: block;
-			font-family: monospace;
-			line-height: 20px;
-			text-shadow: 1px 1px 3px #ccc;
-		}
-
-		input {
-			float: right;
-			width: 45%;
-		}
-
-		span {
-			display: inline-block;
-			width: 90px;
-			text-align: center;
-			font-weight: bold;
-			border: 1px solid #efefef;
-			border-radius: 3px;
-			background-color: white;
-		}
-
-		hr {
-			border-color: rgba(200, 200, 200, 0.1);
-		}
-
-	</style>
-
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
 </head>
 
 <body>
-	<header>
-		<h1>Signals and Systems</h1>
-	</header>
+	<div class="container">
+		<header class="py-2">
+			<h2 class="text-center">
+				<a class="text-decoration-none" href="index.html">
+					<img src="assets/img/icons-192.png" width="30" height="30">
+					Signals and Systems
+				</a>
+			</h2>
+		</header>
 
-	<nav>
-		<a href="index.html">Oscillator</a><br>
-		<a href="voice.html">Voice warp</a><br>
-		<a href="playback.html">Playback rate</a><br>
-		<a href="filters.html">Filters</a><br>
-	</nav>
+		<nav class="navbar nav-pills nav-fill navbar-light bg-light py-15">
+			<a class="nav-item nav-link" href="oscillator.html">Oscillator</a>
+			<a class="nav-item nav-link" href="voice.html">Voice</a>
+			<a class="nav-item nav-link" href="playback.html">Playback</a>
+			<a class="nav-item nav-link" href="filters.html">Filters</a>
+		</nav>
 
-	<main>
-		<div class="controls">
-			<button type="button" class="start">Start</button>
-			<button type="button" class="stop" disabled>Stop</button>
-		</div>
-
-		<hr>
-
-		<h1>Waveform</h1>
-		<div class="waveforms">
-			<button type="button" data-waveform="sine">Sine</button>
-			<button type="button" data-waveform="square">Square</button>
-			<button type="button" data-waveform="sawtooth">Sawtooth</button>
-			<button type="button" data-waveform="triangle">Triangle</button>
-		</div>
-
-		<hr>
-
-		<h1>Notes</h1>
-		<div class="notes">
-			<button type="button" data-note="0">unison</button>
-			<button type="button" data-note="300">minor-third</button>
-			<button type="button" data-note="600">tritone</button>
-			<button type="button" data-note="900">minor-seventh</button>
-			<button type="button" data-note="1200">octave</button>
-		</div>
-
-		<div class="display">
-			<div class="row">
-				<div class="col">
-					<label for="freq">
-						Frequency <span class="freq">440Hz</span>
-					</label>
-					<input class="freq-slider" name="freq" type="range" min="0"
-						max="20000" step="1" value="220">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="detune">
-						Detune <span class="detune">0 cents</span>
-					</label>
-					<input class="detune-slider" name="detune" type="range"
-						min="-1000" max="1000" step="1" value="0">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="gain">
-						Gain <span class="gain">1</span>
-					</label>
-					<input class="gain-slider" name="gain" type="range" min="0"
-						max="1" step="0.1" value="1">
-				</div>
-			</div>
-		</div>
-	</main>
+		<main>
+			intro here
+		</main>
+	</div>
 
 	<!-- SCRIPTS -->
-	<script src="app/oscillator.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 

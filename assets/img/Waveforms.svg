@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="620" height="530" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g id="a" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<g stroke="#1a1a1a" stroke-dasharray="2, 4" stroke-width=".5">
+			<path d="m10 110h600"/>
+			<path d="m10 70h600"/>
+			<path d="m10 30h500"/>
+			<path d="m110 130v-120"/>
+			<path d="m210 130v-120"/>
+			<path d="m310 130v-120"/>
+			<path d="m410 130v-120"/>
+			<path d="m510 130v-120"/>
+		</g>
+		<rect x="10" y="10" width="600" height="120" stroke="#666" stroke-width="1.5"/>
+	</g>
+	<use transform="translate(0,130)" xlink:href="#a"/>
+	<use transform="translate(0,260)" xlink:href="#a"/>
+	<use transform="translate(0,390)" xlink:href="#a"/>
+	<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+		<path d="m10 70c15-20 30-40 50-40 40 0 60 80 100 80s60-80 100-80 60 80 100 80 60-80 100-80 60 80 100 80c20 0 35-20 50-40" stroke="#f00"/>
+		<path d="m10 160h100v80h100v-80h100v80h100v-80h100v80h100" stroke="#090"/>
+		<path d="m10 330 50-40 100 80 100-80 100 80 100-80 100 80 50-40" stroke="#33f"/>
+		<path d="m10 460 100-40v80l200-80v80l200-80v80l100-40" stroke="#c0c"/>
+	</g>
+	<g font-family="DejaVu Sans" font-size="16" font-stretch="condensed" text-anchor="middle">
+		<switch transform="translate(560 38)">
+			<text systemLanguage="de,sv">Sinus</text>
+			<text systemLanguage="en">Sine</text>
+			<text systemLanguage="es">Seno</text>
+			<text systemLanguage="et">Sinusoid</text>
+			<text systemLanguage="fr">Sinusoïdale</text>
+			<text systemLanguage="mk">синусен</text>
+			<text systemLanguage="pl">Sinusoidalna</text>
+			<text systemLanguage="ru">Синусоида</text>
+			<text>Sine</text>
+		</switch>
+		<switch transform="translate(560 168)">
+			<text systemLanguage="de">Rechteck</text>
+			<text systemLanguage="en">Square</text>
+			<text systemLanguage="es">Cuadrada</text>
+			<text systemLanguage="et">Nelinurklaine</text>
+			<text systemLanguage="fr">Carrée</text>
+			<text systemLanguage="mk">квадратен</text>
+			<text systemLanguage="pl">Prostokątna</text>
+			<text systemLanguage="ru">Меандр</text>
+			<text systemLanguage="sv">Fyrkant</text>
+			<text>Square</text>
+		</switch>
+		<switch transform="translate(560 298)">
+			<text systemLanguage="de">Dreieck</text>
+			<text systemLanguage="en">Triangle</text>
+			<text systemLanguage="es">Triangular</text>
+			<text systemLanguage="et"><tspan>Kolmnurk-</tspan><tspan x="0" y="16">laine</tspan></text>
+			<text systemLanguage="fr">Triangulaire</text>
+			<text systemLanguage="mk">триаголен</text>
+			<text systemLanguage="pl">Trójkątna</text>
+			<text systemLanguage="ru">Треугольная</text>
+			<text systemLanguage="sv">Triangel</text>
+			<text>Triangle</text>
+		</switch>
+		<switch transform="translate(560 428)">
+			<text systemLanguage="de">Sägezahn</text>
+			<text systemLanguage="en">Sawtooth</text>
+			<text systemLanguage="es"><tspan>Dientes</tspan><tspan x="0" y="16">de sierra</tspan></text>
+			<text systemLanguage="et"><tspan>Saehammas-</tspan><tspan x="0" y="16">laine</tspan></text>
+			<text systemLanguage="fr">Dents de scie</text>
+			<text systemLanguage="mk">назабен</text>
+			<text systemLanguage="pl">Piłokształtna</text>
+			<text systemLanguage="ru">Пила</text>
+			<text systemLanguage="sv">Sågtand</text>
+			<text>Sawtooth</text>
+		</switch>
+	</g>
+</svg>
