@@ -6,11 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Filters</title>
 
-	<!--[if le IE 9]>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-		<script src="scripts/respond.js"></script>
-	<![endif]-->
-
 	<link rel="manifest" href="app.webmanifest">
 
 	<style>
@@ -50,55 +45,72 @@
 </head>
 
 <body>
-	<header>
-		<h1>Filters</h1>
-	</header>
+	<div class="container">
+		<header>
+			<h1>Filters</h1>
+		</header>
 
-	<nav>
-		<a href="index.html">Oscillator</a><br>
-		<a href="voice.html">Voice warp</a><br>
-		<a href="playback.html">Playback rate</a><br>
-		<a href="filters.html">Filters</a><br>
-	</nav>
+		<nav>
+			<ul class="nav justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">Oscillator</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="voice.html">Voice warp</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="playback.html">Playback rate</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">Filters</a>
+				</li>
+			</ul>
+		</nav>
 
-	<main class="wrapper">
-		<div class='controls'>
-			<button class="play" disabled>loading...</button>
-			<button class="stop" disabled>stop</button>
-		</div>
-		<div class='play-controls'>
-			<label for='loop'>loop
-				<input type='checkbox' name='loop' class="loop" />
-			</label>
-		</div>
-		<div class='filter-controls'>
-			<label for='filterFreq'>filter frequency <span
-					class='freq'>2500Hz</span>
+		<main class="wrapper">
+			<div class="controls">
+				<button class="play" disabled>loading...</button>
+				<button class="stop" disabled>stop</button>
+			</div>
 
-				<input class='filter-slider' name='filterFreq' type='range'
-					min='0' max='20000' step='10' value='2500' disabled />
-			</label>
-			<label>quality (Q) value <span class='filter-q-value'>1</span>
-				<input class="filter-q-slider" type="range" min=".0001" max="10"
-					step=".0005" value="1" disabled />
-			</label>
-			<label>filter gain value <span class='filter-gain-value'>0</span>
-				<input class="filter-gain-slider" type="range" min="-40"
-					max="40" step="1" value="0" disabled />
-			</label>
-			<p>filter type</p>
-			<select name="filterType" class="filtertype">
-				<option value="lowpass">lowpass</option>
-				<option value="highpass">highpass</option>
-				<option value="bandpass">bandpass</option>
-				<option value="lowshelf">lowshelf</option>
-				<option value="highshelf">highshelf</option>
-				<option value="peaking">peaking</option>
-				<option value="notch">notch</option>
-				<option value="allpass">allpass</option>
-			</select>
-		</div>
-	</main>
+			<div class="play-controls">
+				<label for="loop">loop
+					<input type="checkbox" name="loop" class="loop" />
+				</label>
+			</div>
+
+			<div class="filter-controls">
+				<label for="filterFreq">filter frequency
+					<span class="freq"> 2500Hz</span>
+					<input class="filter-slider" name="filterFreq" type="range"
+						min="0" max="20000" step="10" value="2500" disabled />
+				</label>
+
+				<label>quality (Q) value <span class="filter-q-value">1</span>
+					<input class="filter-q-slider" type="range" min=".0001"
+						max="10" step=".0005" value="1" disabled />
+				</label>
+
+				<label>filter gain value <span
+						class="filter-gain-value">0</span>
+					<input class="filter-gain-slider" type="range" min="-40"
+						max="40" step="1" value="0" disabled />
+				</label>
+
+				<p>filter type</p>
+				<select name="filterType" class="filtertype">
+					<option value="lowpass">lowpass</option>
+					<option value="highpass">highpass</option>
+					<option value="bandpass">bandpass</option>
+					<option value="lowshelf">lowshelf</option>
+					<option value="highshelf">highshelf</option>
+					<option value="peaking">peaking</option>
+					<option value="notch">notch</option>
+					<option value="allpass">allpass</option>
+				</select>
+			</div>
+		</main>
+	</div>
 
 	<!-- SCRIPTS -->
 	<script src="app/filters.js"></script>
