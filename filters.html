@@ -29,7 +29,7 @@
 			<a class="nav-item nav-link active" href="#">Filters</a>
 		</nav>
 
-		<main class="wrapper">
+		<main class="py-3">
 			<div class="controls">
 				<button class="play" disabled>loading...</button>
 				<button class="stop" disabled>stop</button>
@@ -45,18 +45,18 @@
 				<label for="filterFreq">filter frequency
 					<span class="freq"> 2500Hz</span>
 					<input class="filter-slider" name="filterFreq" type="range"
-						min="0" max="20000" step="10" value="2500" disabled />
+						min="0" max="20000" step="1" value="2500" disabled>
 				</label>
 
 				<label>quality (Q) value <span class="filter-q-value">1</span>
 					<input class="filter-q-slider" type="range" min=".0001"
-						max="10" step=".0005" value="1" disabled />
+						max="10" step=".0005" value="1" disabled>
 				</label>
 
 				<label>filter gain value <span
 						class="filter-gain-value">0</span>
 					<input class="filter-gain-slider" type="range" min="-40"
-						max="40" step="1" value="0" disabled />
+						max="40" step="1" value="0" disabled>
 				</label>
 
 				<p>filter type</p>
