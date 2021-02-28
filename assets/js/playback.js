@@ -7,8 +7,8 @@ const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/asset
 const startButton    = document.querySelector('.start')
 const stopButton     = document.querySelector('.stop')
 const loopButton     = document.querySelector('.loop')
-// const loopStart      = document.querySelector('.loop-start')
-// const loopEnd        = document.querySelector('.loop-end')
+const loopStart      = document.querySelector('.loop-start')
+const loopEnd        = document.querySelector('.loop-end')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate   = document.querySelector('.rate')
 
@@ -39,8 +39,8 @@ function loadSound (url) {
       sampleBuffer = buffer
       loopStart.setAttribute('max', Math.floor(soundLength))
       loopEnd.setAttribute('max', Math.floor(soundLength))
-      playButton.disabled = false
-      playButton.innerHTML = 'play'
+      // playButton.disabled = false
+      // playButton.innerHTML = 'play'
     })
   }
 
@@ -49,13 +49,15 @@ function loadSound (url) {
 
 // set our sound buffer, loop, and connect to destination
 function setupSound () {
-  sound = audioContext.createBufferSource()
-  sound.buffer = sampleBuffer
-  sound.loop = loop
-  sound.loopStart = loopStart.value
-  sound.loopEnd = loopEnd.value
-  // sound.detune.value = -1000;
+  sound                    = audioContext.createBufferSource()
+  sound.buffer             = sampleBuffer
+  sound.loop               = loop
+  sound.loopStart          = 0
+  sound.loopEnd            = 0
+  // sound.loopStart          = loopStart.value
+  // sound.loopEnd            = loopEnd.value
   sound.playbackRate.value = playbackSlider.value
+  // sound.detune.value = -1000;
   sound.connect(audioContext.destination)
 }
 
