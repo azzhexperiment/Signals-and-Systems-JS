@@ -1,30 +1,40 @@
+let sampleBuffer, sound
+let loop = false
+
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
-let sampleBuffer
-let sound
-const playButton = document.querySelector('.play')
-const stopButton = document.querySelector('.stop')
-let loop = false
-const loopButton = document.querySelector('.loop')
-const loopStart = document.querySelector('.loop-start')
-const loopEnd = document.querySelector('.loop-end')
+
+const startButton    = document.querySelector('.start')
+const stopButton     = document.querySelector('.stop')
+const loopButton     = document.querySelector('.loop')
+const loopStart      = document.querySelector('.loop-start')
+const loopEnd        = document.querySelector('.loop-end')
 const playbackSlider = document.querySelector('.playback-slider')
-const playbackRate = document.querySelector('.rate')
+const playbackRate   = document.querySelector('.rate')
+
+// Setup start/stop
+startButton.onclick = playSound
+stopButton.onclick  = stopSound
 
 // load our sound
-init()
-
-function init () {
+// init()
+// function init () {
   loadSound(sampleURL)
-}
+// }
 
-playButton.onclick = function () {
-  playSound()
-}
+/**
+ * Start everything by connecting to destination
+ */
+// function start () {
+  // playSound()
+// }
 
-stopButton.onclick = function () {
-  stopSound()
-}
+/**
+ * stop everything by connecting to destination
+ */
+// function stop () {
+  // stopSound()
+// }
 
 loopButton.onclick = function (event) {
   loopOn(event)
@@ -44,13 +54,13 @@ loopEnd.oninput = function () {
 
 // function to load sounds via AJAX
 function loadSound (url) {
-  var request = new window.XMLHttpRequest()
+  const request = new window.XMLHttpRequest()
   request.open('GET', url, true)
   request.responseType = 'arraybuffer'
 
   request.onload = function () {
     audioContext.decodeAudioData(request.response, function (buffer) {
-      var soundLength = buffer.duration
+      const soundLength = buffer.duration
       sampleBuffer = buffer
       loopStart.setAttribute('max', Math.floor(soundLength))
       loopEnd.setAttribute('max', Math.floor(soundLength))
@@ -83,6 +93,7 @@ function playSound () {
     UI('stop')
   }
 }
+
 // stop sound and enable / disable buttons
 function stopSound () {
   UI('stop')
@@ -123,23 +134,27 @@ function setLoopEnd (end) {
 function UI (state) {
   switch (state) {
     case 'play':
-      playButton.disabled = true
-      stopButton.disabled = false
+      // playButton.disabled = true
+      // stopButton.disabled = false
+      startButton.classList.add('d-none')
+      stopButton.classList.remove('d-none')
       playbackSlider.disabled = false
       break
     case 'stop':
-      playButton.disabled = false
-      stopButton.disabled = true
+      // playButton.disabled = false
+      // stopButton.disabled = true
+      startButton.classList.remove('d-none')
+      stopButton.classList.add('d-none')
       playbackSlider.disabled = true
       break
   }
 }
 
-/* ios enable sound output */
+/* iOS enable sound output */
 window.addEventListener('touchstart', function () {
   // create empty buffer
-  var buffer = audioContext.createBuffer(1, 1, 22050)
-  var source = audioContext.createBufferSource()
+  const buffer = audioContext.createBuffer(1, 1, 22050)
+  const source = audioContext.createBufferSource()
   source.buffer = buffer
   source.connect(audioContext.destination)
   source.start(0)
