@@ -44,8 +44,6 @@ function setupSound () {
   sound                    = audioContext.createBufferSource()
   sound.buffer             = sampleBuffer
   sound.loop               = true
-  sound.loopStart          = 0
-  sound.loopEnd            = 0
   sound.playbackRate.value = playbackSlider.value
   // sound.detune.value = -1000;
   sound.connect(audioContext.destination)
