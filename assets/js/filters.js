@@ -1,35 +1,58 @@
-let sampleBuffer, sound
-let loop = false
-
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
 const filter = audioContext.createBiquadFilter()
-
+const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
+let sampleBuffer; let sound
 const playButton = document.querySelector('.play')
 const stopButton = document.querySelector('.stop')
+let loop = false
+const loopButton = document.querySelector('.loop')
 
-const filterType       = document.querySelector('.filtertype')
-const filterFreq       = document.querySelector('.freq')
+const filterType = document.querySelector('.filtertype')
+const filterFreq = document.querySelector('.freq')
 const filterFreqSlider = document.querySelector('.filter-slider')
 
-const filterQ       = document.querySelector('.filter-q-value')
+const filterQ = document.querySelector('.filter-q-value')
 const filterQSlider = document.querySelector('.filter-q-slider')
 
-const filterGain       = document.querySelector('.filter-gain-value')
+const filterGain = document.querySelector('.filter-gain-value')
 const filterGainSlider = document.querySelector('.filter-gain-slider')
 
-// Init
-loadSound(sampleURL)
+// load our sound
+init()
 
-playButton.onclick = playSound
-stopButton.onclick = stopSound
+function init () {
+  loadSound(sampleURL)
+}
 
-filterType.oninput = changeFilterType(filterType.value)
-filterFreqSlider.oninput = changeFilterFreq(filterFreqSlider.value)
-filterQSlider.oninput = changeFilterQ(filterQSlider.value)
-filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
+playButton.onclick = function () {
+  playSound()
+}
 
-// Load sounds via AJAX
+stopButton.onclick = function () {
+  stopSound()
+}
+
+loopButton.onclick = function (event) {
+  loop = event.target.checked
+}
+
+filterType.oninput = function () {
+  changeFilterType(filterType.value)
+}
+
+filterFreqSlider.oninput = function () {
+  changeFilterFreq(filterFreqSlider.value)
+}
+
+filterQSlider.oninput = function () {
+  changeFilterQ(filterQSlider.value)
+}
+
+filterGainSlider.oninput = function (event) {
+  changeFilterGain(event.target.value)
+}
+
+// function to load sounds via AJAX
 function loadSound (url) {
   const request = new window.XMLHttpRequest()
   request.open('GET', url, true)
@@ -38,36 +61,39 @@ function loadSound (url) {
   request.onload = function () {
     audioContext.decodeAudioData(request.response, function (buffer) {
       sampleBuffer = buffer
+      playButton.disabled = false
+      playButton.innerHTML = 'play'
     })
   }
 
   request.send()
 }
-
-// Setup sound, loop, and connect to destination
+// setup sound, loop, and connect to destination
 function setupSound () {
   sound = audioContext.createBufferSource()
   sound.buffer = sampleBuffer
-  sound.loop = true
+  sound.loop = loop
   sound.connect(filter)
   filter.connect(audioContext.destination)
 }
 
-// Play sound and enable / disable buttons
+// play sound and enable / disable buttons
 function playSound () {
   setupSound()
   UI('play')
   sound.start(0)
-  sound.onended = UI('stop')
+  sound.onended = function () {
+    UI('stop')
+  }
 }
 
-// Stop sound and enable/disable buttons
+// stop sound and enable / disable buttons
 function stopSound () {
   UI('stop')
   sound.stop(0)
 }
 
-// change filter type and enable/disable controls depending on filter type
+// change filter type and enable / disable controls depending on filter type
 function changeFilterType (type) {
   filter.type = type
   switch (type) {
@@ -128,9 +154,9 @@ function UI (state) {
   }
 }
 
-// iOS enable sound output
+/* ios enable sound output */
 window.addEventListener('touchstart', function () {
-  // Create empty buffer
+  // create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
   source.buffer = buffer
