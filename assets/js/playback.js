@@ -27,7 +27,7 @@ playbackSlider.oninput = changeRate(playbackSlider.value)
 // loopStart.oninput = setLoopStart(loopStart.value)
 // loopEnd.oninput   = setLoopEnd(loopEnd.value)
 
-// function to load sounds via AJAX
+// Load sounds via ajax
 function loadSound (url) {
   const request = new window.XMLHttpRequest()
   request.open('GET', url, true)
@@ -51,9 +51,9 @@ function loadSound (url) {
 function setupSound () {
   sound                    = audioContext.createBufferSource()
   sound.buffer             = sampleBuffer
-  sound.loop               = loop
-  sound.loopStart          = 0
-  sound.loopEnd            = 0
+  sound.loop               = true
+  sound.loopStart          = 0 // Start loop from beginning
+  sound.loopEnd            = 0 // Immediately begin loop
   // sound.loopStart          = loopStart.value
   // sound.loopEnd            = loopEnd.value
   sound.playbackRate.value = playbackSlider.value
@@ -61,17 +61,22 @@ function setupSound () {
   sound.connect(audioContext.destination)
 }
 
-// play sound and enable / disable buttons
+// Play sound
 function playSound () {
   setupSound()
   UI('play')
+
+  startButton.classList.add('d-none')
+  stopButton.classList.remove('d-none')
+  playbackSlider.disabled = false
+
   sound.start(0)
   // sound.onended = function () {
   //   UI('stop')
   // }
 }
 
-// stop sound and enable / disable buttons
+// Stop sound
 function stopSound () {
   UI('stop')
   sound.stop(0)
@@ -80,7 +85,7 @@ function stopSound () {
 // change playback speed/rate
 function changeRate (rate) {
   sound.playbackRate.value = rate
-  playbackRate.innerHTML = rate
+  playbackRate.innerHTML   = rate
 }
 
 function loopOn (event) {
@@ -88,10 +93,10 @@ function loopOn (event) {
   if (sound) { // sound needs to be set before setting loop points
     if (loop) {
       loopStart.disabled = false
-      loopEnd.disabled = false
+      loopEnd.disabled   = false
     } else {
       loopStart.disabled = true
-      loopEnd.disabled = true
+      loopEnd.disabled   = true
     }
   } else {
     console.log('press play first and then set loop')
