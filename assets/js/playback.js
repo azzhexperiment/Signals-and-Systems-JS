@@ -3,14 +3,14 @@ let sampleBuffer, sound
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
 
-const startButton    = document.querySelector('.start')
+const playButton     = document.querySelector('.start')
 const stopButton     = document.querySelector('.stop')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate   = document.querySelector('.rate')
 
 // Setup start/stop
-startButton.onclick = playSound
-stopButton.onclick  = stopSound
+playButton.onclick = playSound
+stopButton.onclick = stopSound
 
 // Init
 loadSound(sampleURL)
@@ -46,7 +46,7 @@ function setupSound () {
 // Play sound
 function playSound () {
   setupSound()
-  startButton.classList.add('d-none')
+  playButton.classList.add('d-none')
   stopButton.classList.remove('d-none')
   playbackSlider.disabled = false
 
@@ -55,8 +55,8 @@ function playSound () {
 
 // Stop sound
 function stopSound () {
-  startButton.classList.remove('d-none')
   stopButton.classList.add('d-none')
+  playButton.classList.remove('d-none')
   playbackSlider.disabled = true
 
   sound.stop(0)
