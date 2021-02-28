@@ -4,16 +4,13 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const filter = audioContext.createBiquadFilter()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
 
-const playButton = document.querySelector('.play')
-const stopButton = document.querySelector('.stop')
-
+const playButton       = document.querySelector('.play')
+const stopButton       = document.querySelector('.stop')
 const filterType       = document.querySelector('.filtertype')
 const filterFreq       = document.querySelector('.freq')
 const filterFreqSlider = document.querySelector('.filter-slider')
-
-const filterQ       = document.querySelector('.filter-q-value')
-const filterQSlider = document.querySelector('.filter-q-slider')
-
+const filterQ          = document.querySelector('.filter-q-value')
+const filterQSlider    = document.querySelector('.filter-q-slider')
 const filterGain       = document.querySelector('.filter-gain-value')
 const filterGainSlider = document.querySelector('.filter-gain-slider')
 
@@ -23,10 +20,10 @@ loadSound(sampleURL)
 playButton.onclick = playSound
 stopButton.onclick = stopSound
 
-filterType.oninput       = function () { changeFilterType(filterType.value) }
-filterFreqSlider.oninput = function () { changeFilterFreq(filterFreqSlider.value) }
-filterQSlider.oninput    = function () { changeFilterQ(filterQSlider.value) }
-filterGainSlider.oninput = function (event) { changeFilterGain(event.target.value) }
+filterType.oninput       = changeFilterType(filterType.value)
+filterFreqSlider.oninput = changeFilterFreq(filterFreqSlider.value)
+filterQSlider.oninput    = changeFilterQ(filterQSlider.value)
+filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
 
 // function to load sounds via AJAX
 function loadSound (url) {
