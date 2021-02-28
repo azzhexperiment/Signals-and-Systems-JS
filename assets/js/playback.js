@@ -1,5 +1,4 @@
 let sampleBuffer, sound
-let loop = false
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
