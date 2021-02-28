@@ -31,38 +31,18 @@
 
 		<main class="py-3">
 			<div class="play-controls">
-				<div class="row">
-					<div class="col">
-						<label for="loop">loop
-							<input type="checkbox" name="loop" class="loop">
-						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="loop-start">loop start (seconds)
-							<input class="loop-start" type="number" min="0"
-								max="10" step="1" value="0" name="loop-start"
-								disabled>
-						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="loop-end">loop end (seconds)
-							<input class="loop-end" type="number" min="0"
-								max="10" step="1" value="0" name="loop-end"
-								disabled>
-						</label>
-					</div>
-				</div>
-				<hr>
-				<label for="playbackRate">playback rate <span
-						class="rate">1</span>
-					<input class="playback-slider" name="playbackRate"
-						type="range" min="0" max="10" step="0.05" value="1"
-						disabled>
+				<label for="loop">loop
+					<input type="checkbox" name="loop" class="loop">
 				</label>
+
+				<hr>
+
+				<label for="playbackRate">
+					playback rate <span class="rate">1</span>
+				</label>
+				<br>
+				<input class="playback-slider" name="playbackRate" type="range"
+					min="0" max="10" step="0.05" value="1" disabled>
 			</div>
 
 			<div class="controls text-center pt-5">
