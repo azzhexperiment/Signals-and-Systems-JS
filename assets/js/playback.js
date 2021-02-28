@@ -7,8 +7,8 @@ const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/asset
 const startButton    = document.querySelector('.start')
 const stopButton     = document.querySelector('.stop')
 const loopButton     = document.querySelector('.loop')
-const loopStart      = document.querySelector('.loop-start')
-const loopEnd        = document.querySelector('.loop-end')
+// const loopStart      = document.querySelector('.loop-start')
+// const loopEnd        = document.querySelector('.loop-end')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate   = document.querySelector('.rate')
 
@@ -17,40 +17,15 @@ startButton.onclick = playSound
 stopButton.onclick  = stopSound
 
 // load our sound
-// init()
-// function init () {
-  loadSound(sampleURL)
-// }
+loadSound(sampleURL)
 
-/**
- * Start everything by connecting to destination
- */
-// function start () {
-  // playSound()
-// }
+loopButton.onclick = (event) => { loopOn(event) }
 
-/**
- * stop everything by connecting to destination
- */
-// function stop () {
-  // stopSound()
-// }
+playbackSlider.oninput = changeRate(playbackSlider.value)
 
-loopButton.onclick = function (event) {
-  loopOn(event)
-}
-
-playbackSlider.oninput = function () {
-  changeRate(playbackSlider.value)
-}
-
-loopStart.oninput = function () {
-  setLoopStart(loopStart.value)
-}
-
-loopEnd.oninput = function () {
-  setLoopEnd(loopEnd.value)
-}
+// // Loop control
+// loopStart.oninput = setLoopStart(loopStart.value)
+// loopEnd.oninput   = setLoopEnd(loopEnd.value)
 
 // function to load sounds via AJAX
 function loadSound (url) {
@@ -121,15 +96,15 @@ function loopOn (event) {
   }
 }
 
-// change loopStart
-function setLoopStart (start) {
-  sound.loopStart = start
-}
+// // change loopStart
+// function setLoopStart (start) {
+//   sound.loopStart = start
+// }
 
-// change loopEnd
-function setLoopEnd (end) {
-  sound.loopEnd = end
-}
+// // change loopEnd
+// function setLoopEnd (end) {
+//   sound.loopEnd = end
+// }
 
 function UI (state) {
   switch (state) {
