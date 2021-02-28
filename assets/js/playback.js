@@ -64,9 +64,9 @@ function playSound () {
   setupSound()
   UI('play')
   sound.start(0)
-  sound.onended = function () {
-    UI('stop')
-  }
+  // sound.onended = function () {
+  //   UI('stop')
+  // }
 }
 
 // stop sound and enable / disable buttons
