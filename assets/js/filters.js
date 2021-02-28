@@ -72,7 +72,7 @@ function loadSound (url) {
 function setupSound () {
   sound = audioContext.createBufferSource()
   sound.buffer = sampleBuffer
-  sound.loop = loop
+  sound.loop = true
   sound.connect(filter)
   filter.connect(audioContext.destination)
 }
