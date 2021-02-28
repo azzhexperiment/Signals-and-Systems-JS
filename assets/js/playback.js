@@ -69,9 +69,9 @@ function changeRate (rate) {
   playbackRate.innerHTML   = rate
 }
 
-/* iOS enable sound output */
+// iOS enable sound output
 window.addEventListener('touchstart', function () {
-  // create empty buffer
+  // Create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
   source.buffer = buffer
