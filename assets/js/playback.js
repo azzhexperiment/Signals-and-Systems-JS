@@ -6,7 +6,6 @@ const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/asset
 
 const startButton    = document.querySelector('.start')
 const stopButton     = document.querySelector('.stop')
-const loopButton     = document.querySelector('.loop')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate   = document.querySelector('.rate')
 
@@ -14,10 +13,8 @@ const playbackRate   = document.querySelector('.rate')
 startButton.onclick = playSound
 stopButton.onclick  = stopSound
 
-// load our sound
+// Init
 loadSound(sampleURL)
-
-loopButton.onclick = (event) => { loopOn(event) }
 
 playbackSlider.oninput = changeRate(playbackSlider.value)
 
@@ -31,8 +28,6 @@ function loadSound (url) {
     audioContext.decodeAudioData(request.response, function (buffer) {
       const soundLength = buffer.duration
       sampleBuffer = buffer
-      loopStart.setAttribute('max', Math.floor(soundLength))
-      loopEnd.setAttribute('max', Math.floor(soundLength))
     })
   }
 
