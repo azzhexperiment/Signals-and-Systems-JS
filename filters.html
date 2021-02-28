@@ -30,10 +30,19 @@
 		</nav>
 
 		<main class="py-3">
-			<div class="controls">
-				<button class="play" disabled>loading...</button>
-				<button class="stop" disabled>stop</button>
-			</div>
+			<h4 class="py-2">Choose your filter type</h4>
+			<select name="filterType" class="filtertype">
+				<option value="lowpass">Lowpass</option>
+				<option value="highpass">Highpass</option>
+				<option value="bandpass">Bandpass</option>
+				<option value="lowshelf">Lowshelf</option>
+				<option value="highshelf">Highshelf</option>
+				<option value="peaking">Peaking</option>
+				<option value="notch">Notch</option>
+				<option value="allpass">Allpass</option>
+			</select>
+
+			<hr>
 
 			<div class="filter-controls">
 				<label for="filterFreq">
@@ -45,7 +54,7 @@
 					disabled>
 
 				<label for="filterQ">
-					quality (Q) value <span class="filter-q-value">1</span>
+					Quality (Q) value <span class="filter-q-value">1</span>
 				</label>
 				<br>
 				<input class="filter-q-slider w-100" name="filterQ" type="range"
@@ -60,17 +69,10 @@
 
 				<hr>
 
-				<h4 class="py-2">Choose your filter type</h4>
-				<select name="filterType" class="filtertype">
-					<option value="lowpass">Lowpass</option>
-					<option value="highpass">Highpass</option>
-					<option value="bandpass">Bandpass</option>
-					<option value="lowshelf">Lowshelf</option>
-					<option value="highshelf">Highshelf</option>
-					<option value="peaking">Peaking</option>
-					<option value="notch">Notch</option>
-					<option value="allpass">Allpass</option>
-				</select>
+				<div class="controls">
+					<button class="play" disabled>loading...</button>
+					<button class="stop" disabled>stop</button>
+				</div>
 			</div>
 		</main>
 	</div>
