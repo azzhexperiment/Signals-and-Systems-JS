@@ -55,8 +55,6 @@ function playSound () {
   setupSound()
   UI('play')
   sound.start(0)
-  playButton.classList.add('d-none')
-  stopButton.classList.remove('d-none')
 }
 
 // stop sound and enable / disable buttons
@@ -113,14 +111,14 @@ function UI (state) {
       playButton.classList.add('d-none')
       stopButton.classList.remove('d-none')
       filterFreqSlider.disabled = false
-      filterQSlider.disabled = false
+      filterQSlider.disabled    = false
       filterGainSlider.disabled = false
       break
     case 'stop':
       stopButton.classList.add('d-none')
       playButton.classList.remove('d-none')
       filterFreqSlider.disabled = true
-      filterQSlider.disabled = true
+      filterQSlider.disabled    = true
       filterGainSlider.disabled = true
       break
   }
