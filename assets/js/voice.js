@@ -1,120 +1,55 @@
-const heading = document.querySelector('h3')
+let source, soundSource, drawVisual
+
+const convolverUrl = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/concert-crowd.ogg'
+
+const heading       = document.querySelector('h3')
+const canvas        = document.querySelector('.visualizer')
+const playButton    = document.querySelector('.play')
+const stopButton    = document.querySelector('.stop')
+const intendedWidth = document.querySelector('main').clientWidth
+const voiceSelect   = document.getElementById('voice')
+const visualSelect  = document.getElementById('visual')
 
 heading.textContent = 'CLICK ANYWHERE TO START'
 
 document.body.addEventListener('click', init)
 
+/**
+ * Main function to power experiment
+ */
 function init () {
-  heading.textContent = ''
-  document.body.removeEventListener('click', init)
+  prepUI()
 
-  // Older browsers might not implement mediaDevices at all, so we set an empty object first
-  if (navigator.mediaDevices === undefined) { navigator.mediaDevices = {} }
-
-  // Some browsers partially implement mediaDevices. We can't just assign an object
-  // with getUserMedia as it would overwrite existing properties.
-  // Here, we will just add the getUserMedia property if it's missing.
-  if (navigator.mediaDevices.getUserMedia === undefined) {
-    navigator.mediaDevices.getUserMedia = function (constraints) {
-      // First get ahold of the legacy getUserMedia, if present
-      const getUserMedia = navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia
-
-      // Some browsers just don't implement it - return a rejected promise with an error
-      // to keep a consistent interface
-      if (!getUserMedia) {
-        return Promise.reject(new Error('getUserMedia is not implemented in this browser'))
-      }
-
-      // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
-      return new Promise(function (resolve, reject) {
-        getUserMedia.call(navigator, constraints, resolve, reject)
-      })
-    }
-  }
-
-  // set up forked web audio context, for multiple browsers
-  // window. is needed otherwise Safari explodes
-
+  // Set up forked web audio context, for multiple browsers window.
+  // Is needed otherwise Safari explodes
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-  const voiceSelect = document.getElementById('voice')
-  let source
-
-  // grab the mute button to use below
-  const mute = document.querySelector('.mute')
 
   // set up the different audio nodes we will use for the app
-
-  const analyser = audioCtx.createAnalyser()
-  analyser.minDecibels = -90
-  analyser.maxDecibels = -10
-  analyser.smoothingTimeConstant = 0.85
-
+  const analyser     = audioCtx.createAnalyser()
   const distortion   = audioCtx.createWaveShaper()
   const gainNode     = audioCtx.createGain()
   const biquadFilter = audioCtx.createBiquadFilter()
   const convolver    = audioCtx.createConvolver()
 
-  // distortion curve for the waveshaper, thanks to Kevin Ennis
-  // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
+  setAnalyser()
+  getConvolver()
 
-  function makeDistortionCurve (amount) {
-    const k = typeof amount === 'number' ? amount : 50
-    const nSamples = 44100
-    const curve = new Float32Array(nSamples)
-    const deg = Math.PI / 180
-    let i = 0
-    // let x
-
-    for (let x; i < nSamples; ++i) {
-      x = i * 2 / nSamples - 1
-      curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x))
-    }
-
-    return curve
-  }
-
-  // grab audio track via XHR for convolver node
-
-  let soundSource
-
-  const ajaxRequest = new window.XMLHttpRequest()
-
-  ajaxRequest.open('GET', 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/concert-crowd.ogg', true)
-
-  ajaxRequest.responseType = 'arraybuffer'
-
-  ajaxRequest.onload = function () {
-    const audioData = ajaxRequest.response
-
-    audioCtx.decodeAudioData(audioData, function (buffer) {
-      soundSource = audioCtx.createBufferSource()
-      convolver.buffer = buffer
-    }, function (e) { console.log('Error with decoding audio data' + e.err) })
-
-    // soundSource.connect(audioCtx.destination);
-    // soundSource.loop = true;
-    // soundSource.start();
-  }
-
-  ajaxRequest.send()
-
-  // set up canvas context for visualizer
-
-  const canvas = document.querySelector('.visualizer')
+  // Set up canvas context for visualizer
   const canvasCtx = canvas.getContext('2d')
-
-  const intendedWidth = document.querySelector('main').clientWidth
 
   canvas.setAttribute('width', intendedWidth)
 
-  const visualSelect = document.getElementById('visual')
+  // Event listeners to change visualize and voice settings
+  visualSelect.onchange = setVisual
+  voiceSelect.onchange  = voiceChange
 
-  let drawVisual
+  // Setup start/stop
+  playButton.onclick = start
+  stopButton.onclick = stop
+
+  start()
 
   // main block for doing the audio recording
-
   if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia supported.')
     const constraints = { audio: true }
@@ -131,9 +66,122 @@ function init () {
         visualize()
         voiceChange()
       })
-      .catch(function (err) { console.log('The following gUM error occured: ' + err) })
+      .catch(function (err) {
+        console.log('The following gUM error occured: ' + err)
+      })
   } else {
-    console.log('getUserMedia not supported on your browser!')
+    console.log('getUserMedia not supported by browser')
+  }
+
+  /**
+   * Clears header
+   */
+  function prepUI () {
+    heading.textContent = ''
+    document.body.removeEventListener('click', init)
+
+    queryMediaDevices()
+  }
+
+  /**
+   * Polyfill for media devices
+   *
+   * @returns {Promise}
+   */
+  function queryMediaDevices () {
+    // Older browsers might not implement mediaDevices at all, so we set an empty object first
+    if (navigator.mediaDevices === undefined) { navigator.mediaDevices = {} }
+
+    // Some browsers partially implement mediaDevices. We can't just assign an object
+    // with getUserMedia as it would overwrite existing properties.
+    // Here, we will just add the getUserMedia property if it's missing.
+    if (navigator.mediaDevices.getUserMedia === undefined) {
+      navigator.mediaDevices.getUserMedia = function (constraints) {
+        // First get ahold of the legacy getUserMedia, if present
+        const getUserMedia = navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia ||
+                            navigator.msGetUserMedia
+
+        // Some browsers just don't implement it - return a rejected promise with an error
+        // to keep a consistent interface
+        if (!getUserMedia) {
+          return Promise.reject(new Error('getUserMedia is not implemented in this browser'))
+        }
+
+        // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+        return new Promise(function (resolve, reject) {
+          getUserMedia.call(navigator, constraints, resolve, reject)
+        })
+      }
+    }
+  }
+
+  /**
+   * Calculate distortion curve for audio visualisation
+   *
+   * Distortion curve for the waveshaper, thanks to Kevin Ennis
+   * http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
+   *
+   * @param {Number} amount
+   * @returns {Array} curve
+   */
+  function makeDistortionCurve (amount) {
+    let x
+
+    const k = typeof amount === 'number' ? amount : 50
+    const nSamples = 44100
+    const curve = new Float32Array(nSamples)
+    const deg = Math.PI / 180
+
+    for (let i = 0; i < nSamples; ++i) {
+      x = i * 2 / nSamples - 1
+      curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x))
+    }
+
+    return curve
+  }
+
+  /**
+   * Sets initial values of analyser
+   */
+  function setAnalyser () {
+    analyser.minDecibels = -90
+    analyser.maxDecibels = -10
+    analyser.smoothingTimeConstant = 0.85
+  }
+
+  /**
+   * Get convolver node audio track
+   */
+  function getConvolver () {
+    const ajax = new window.XMLHttpRequest()
+
+    ajax.open('GET', convolverUrl, true)
+
+    ajax.responseType = 'arraybuffer'
+
+    ajax.onload = function () {
+      const audioData = ajax.response
+
+      audioCtx.decodeAudioData(audioData, function (buffer) {
+        soundSource = audioCtx.createBufferSource()
+        convolver.buffer = buffer
+      }, function (e) { console.log('Error with decoding audio data' + e.err) })
+
+      soundSource.connect(audioCtx.destination)
+      soundSource.loop = true
+      soundSource.start()
+    }
+
+    ajax.send()
+  }
+
+  /**
+   * Sets current frame for audio visual
+   */
+  function setVisual () {
+    window.cancelAnimationFrame(drawVisual)
+    visualize()
   }
 
   function visualize () {
@@ -250,28 +298,21 @@ function init () {
     }
   }
 
-  // event listeners to change visualize and voice settings
-
-  visualSelect.onchange = function () {
-    window.cancelAnimationFrame(drawVisual)
-    visualize()
+  /**
+   * Start sound and toggle button
+   */
+  function start () {
+    gainNode.gain.value = 1
+    playButton.classList.add('d-none')
+    stopButton.classList.remove('d-none')
   }
 
-  voiceSelect.onchange = function () {
-    voiceChange()
-  }
-
-  mute.onclick = voiceMute
-
-  function voiceMute () {
-    if (mute.id === '') {
-      gainNode.gain.value = 0
-      mute.id = 'activated'
-      mute.innerHTML = 'Unmute'
-    } else {
-      gainNode.gain.value = 1
-      mute.id = ''
-      mute.innerHTML = 'Mute'
-    }
+  /**
+   * Stop sound and toggle button
+   */
+  function stop () {
+    gainNode.gain.value = 0
+    stopButton.classList.add('d-none')
+    playButton.classList.remove('d-none')
   }
 }
