@@ -1,5 +1,7 @@
 const heading = document.querySelector('h3')
+
 heading.textContent = 'CLICK ANYWHERE TO START'
+
 document.body.addEventListener('click', init)
 
 function init () {
@@ -49,10 +51,10 @@ function init () {
   analyser.maxDecibels = -10
   analyser.smoothingTimeConstant = 0.85
 
-  const distortion = audioCtx.createWaveShaper()
-  const gainNode = audioCtx.createGain()
+  const distortion   = audioCtx.createWaveShaper()
+  const gainNode     = audioCtx.createGain()
   const biquadFilter = audioCtx.createBiquadFilter()
-  const convolver = audioCtx.createConvolver()
+  const convolver    = audioCtx.createConvolver()
 
   // distortion curve for the waveshaper, thanks to Kevin Ennis
   // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
@@ -103,7 +105,7 @@ function init () {
   const canvas = document.querySelector('.visualizer')
   const canvasCtx = canvas.getContext('2d')
 
-  const intendedWidth = document.querySelector('.wrapper').clientWidth
+  const intendedWidth = document.querySelector('main').clientWidth
 
   canvas.setAttribute('width', intendedWidth)
 
@@ -135,7 +137,7 @@ function init () {
   }
 
   function visualize () {
-    const WIDTH = canvas.width
+    const WIDTH  = canvas.width
     const HEIGHT = canvas.height
 
     const visualSetting = visualSelect.value

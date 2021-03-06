@@ -1,19 +1,19 @@
 let audioContext, osc, gain
 
-const startButton = document.querySelector('.start')
-const stopButton = document.querySelector('.stop')
-const freqSlider = document.querySelector('.freq-slider')
-const detuneSlider = document.querySelector('.detune-slider')
-const gainSlider = document.querySelector('.gain-slider')
-const gainDisplay = document.querySelector('.gain')
-const freqDisplay = document.querySelector('.freq')
+const playButton    = document.querySelector('.play')
+const stopButton    = document.querySelector('.stop')
+const freqSlider    = document.querySelector('.freq-slider')
+const detuneSlider  = document.querySelector('.detune-slider')
+const gainSlider    = document.querySelector('.gain-slider')
+const gainDisplay   = document.querySelector('.gain')
+const freqDisplay   = document.querySelector('.freq')
 const detuneDisplay = document.querySelector('.detune')
 
 // Starts the app. If no waveform selected, defaults to 440Hz sine wave
 init()
 
 // Setup start/stop
-startButton.onclick = start
+playButton.onclick = start
 stopButton.onclick = stop
 
 // Setup waveform changes
@@ -63,7 +63,7 @@ function init () {
  * Start everything by connecting to destination
  */
 function start () {
-  startButton.classList.add('d-none')
+  playButton.classList.add('d-none')
   stopButton.classList.remove('d-none')
 
   gain.connect(audioContext.destination)
@@ -73,8 +73,8 @@ function start () {
  * stop everything by connecting to destination
  */
 function stop () {
-  startButton.classList.remove('d-none')
   stopButton.classList.add('d-none')
+  playButton.classList.remove('d-none')
 
   gain.disconnect(audioContext.destination)
 }

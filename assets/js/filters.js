@@ -1,56 +1,29 @@
+let sampleBuffer, sound
+
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const filter = audioContext.createBiquadFilter()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
-let sampleBuffer; let sound
-const playButton = document.querySelector('.play')
-const stopButton = document.querySelector('.stop')
-let loop = false
-const loopButton = document.querySelector('.loop')
 
-const filterType = document.querySelector('.filtertype')
-const filterFreq = document.querySelector('.freq')
+const playButton       = document.querySelector('.play')
+const stopButton       = document.querySelector('.stop')
+const filterType       = document.querySelector('.filtertype')
+const filterFreq       = document.querySelector('.freq')
 const filterFreqSlider = document.querySelector('.filter-slider')
-
-const filterQ = document.querySelector('.filter-q-value')
-const filterQSlider = document.querySelector('.filter-q-slider')
-
-const filterGain = document.querySelector('.filter-gain-value')
+const filterQ          = document.querySelector('.filter-q-value')
+const filterQSlider    = document.querySelector('.filter-q-slider')
+const filterGain       = document.querySelector('.filter-gain-value')
 const filterGainSlider = document.querySelector('.filter-gain-slider')
 
-// load our sound
-init()
+// Init
+loadSound(sampleURL)
 
-function init () {
-  loadSound(sampleURL)
-}
+playButton.onclick = playSound
+stopButton.onclick = stopSound
 
-playButton.onclick = function () {
-  playSound()
-}
-
-stopButton.onclick = function () {
-  stopSound()
-}
-
-loopButton.onclick = function (event) {
-  loop = event.target.checked
-}
-
-filterType.oninput = function () {
-  changeFilterType(filterType.value)
-}
-
-filterFreqSlider.oninput = function () {
-  changeFilterFreq(filterFreqSlider.value)
-}
-
-filterQSlider.oninput = function () {
-  changeFilterQ(filterQSlider.value)
-}
-
-filterGainSlider.oninput = function (event) {
-  changeFilterGain(event.target.value)
-}
+filterType.oninput       = changeFilterType(filterType.value)
+filterFreqSlider.oninput = changeFilterFreq(filterFreqSlider.value)
+filterQSlider.oninput    = changeFilterQ(filterQSlider.value)
+filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
 
 // function to load sounds via AJAX
 function loadSound (url) {
@@ -72,7 +45,7 @@ function loadSound (url) {
 function setupSound () {
   sound = audioContext.createBufferSource()
   sound.buffer = sampleBuffer
-  sound.loop = loop
+  sound.loop = true
   sound.connect(filter)
   filter.connect(audioContext.destination)
 }
@@ -82,9 +55,6 @@ function playSound () {
   setupSound()
   UI('play')
   sound.start(0)
-  sound.onended = function () {
-    UI('stop')
-  }
 }
 
 // stop sound and enable / disable buttons
@@ -117,19 +87,19 @@ function changeFilterType (type) {
   }
 }
 
-// change filter frequency and update display
+// Change filter frequency and update display
 function changeFilterFreq (freq) {
   filter.frequency.value = freq
   filterFreq.innerHTML = freq + 'Hz'
 }
 
-// change filter Q and update display
+// Change filter Q and update display
 function changeFilterQ (Q) {
   filter.Q.value = Q
   filterQ.innerHTML = Q
 }
 
-// change filter Gain and update display
+// Change filter Gain and update display
 function changeFilterGain (gain) {
   filter.gain.value = gain
   filterGain.innerHTML = gain + 'dB'
@@ -138,25 +108,25 @@ function changeFilterGain (gain) {
 function UI (state) {
   switch (state) {
     case 'play':
-      playButton.disabled = true
-      stopButton.disabled = false
+      playButton.classList.add('d-none')
+      stopButton.classList.remove('d-none')
       filterFreqSlider.disabled = false
-      filterQSlider.disabled = false
+      filterQSlider.disabled    = false
       filterGainSlider.disabled = false
       break
     case 'stop':
-      playButton.disabled = false
-      stopButton.disabled = true
+      stopButton.classList.add('d-none')
+      playButton.classList.remove('d-none')
       filterFreqSlider.disabled = true
-      filterQSlider.disabled = true
+      filterQSlider.disabled    = true
       filterGainSlider.disabled = true
       break
   }
 }
 
-/* ios enable sound output */
+/* iOS enable sound output */
 window.addEventListener('touchstart', function () {
-  // create empty buffer
+  // Create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
   source.buffer = buffer

@@ -23,52 +23,40 @@
 		</header>
 
 		<nav class="navbar nav-pills nav-fill navbar-light bg-light py-15">
-			<a class="nav-item nav-link" href="oscillator.html">Oscillator</a>
-			<a class="nav-item nav-link" href="voice.html">Voice</a>
-			<a class="nav-item nav-link active" href="#">Playback</a>
-			<a class="nav-item nav-link" href="filters.html">Filters</a>
+			<a class="nav-item nav-link btn-sm" href="oscillator.html">
+				Oscillator</a>
+			<a class="nav-item nav-link btn-sm active" href="#">
+				Playback</a>
+			<a class="nav-item nav-link btn-sm" href="filters.html">
+				Filters</a>
+			<a class="nav-item nav-link btn-sm" href="voice.html">
+				Voice</a>
 		</nav>
 
 		<main class="py-3">
-			<div class="controls">
-				<button class="play" disabled>Loading...</button>
-				<button class="stop" disabled>Stop</button>
-			</div>
+			<h4 class="py-2">Adjust playback speed</h4>
 			<div class="play-controls">
-				<div class="row">
-					<div class="col">
-						<label for="loop">loop
-							<input type="checkbox" name="loop" class="loop">
-						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="loop-start">loop start (seconds)
-							<input class="loop-start" type="number" min="0"
-								max="10" step="1" value="0" name="loop-start"
-								disabled>
-						</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<label for="loop-end">loop end (seconds)
-							<input class="loop-end" type="number" min="0"
-								max="10" step="1" value="0" name="loop-end"
-								disabled>
-						</label>
-					</div>
-				</div>
-				<hr>
-				<label for="playbackRate">playback rate <span
-						class="rate">1</span>
-					<input class="playback-slider" name="playbackRate"
-						type="range" min="0" max="10" step="0.05" value="1"
-						disabled>
+				<label for="playbackRate">
+					Playback rate <span class="rate">1</span>
 				</label>
+				<br>
+				<input class="playback-slider w-100" name="playbackRate"
+					type="range" min="0" max="10" step="0.05" value="1"
+					disabled>
+			</div>
+
+			<div class="controls text-center pt-5">
+				<img class="play" src="assets/img/play.png" width="100"
+					height="100">
+				<img class="stop d-none" src="assets/img/stop.png" width="100"
+					height="100">
 			</div>
 		</main>
+
+		<footer>
+			<hr>
+			<p class="text-center my-3">A project by Zhu Zihao</p>
+		</footer>
 	</div>
 
 	<!-- SCRIPTS -->
