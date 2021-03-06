@@ -38,7 +38,7 @@
 		</nav>
 
 		<main class="py-3">
-			<h3></h3>
+			<h3 class="text-center"></h3>
 
 			<canvas class="visualizer" width="640" height="100"></canvas>
 
@@ -55,17 +55,26 @@
 				<div>
 					<label for="visual">Visualizer setting</label>
 					<select id="visual" name="visual">
-						<option value="sinewave">Sinewave</option>
-						<option value="frequencybars" selected>Frequency bars
+						<option value="sinewave">
+							Sinewave
 						</option>
-						<option value="off">Off</option>
+						<option value="frequencybars" selected>
+							Frequency bars
+						</option>
+						<option value="off">
+							Off
+						</option>
 					</select>
-				</div>
-				<div>
-					<a class="mute">Mute</a>
 				</div>
 			</form>
 		</main>
+
+		<div class="controls text-center pt-5">
+			<img class="play" src="assets/img/play.png" width="100"
+				height="100">
+			<img class="stop d-none" src="assets/img/stop.png" width="100"
+				height="100">
+		</div>
 
 		<!--
 		<label for="toggle">❔</label>
