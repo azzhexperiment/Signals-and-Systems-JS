@@ -103,7 +103,7 @@ function init () {
   const canvas = document.querySelector('.visualizer')
   const canvasCtx = canvas.getContext('2d')
 
-  const intendedWidth = document.querySelector('.main').clientWidth
+  const intendedWidth = document.querySelector('main').clientWidth
 
   canvas.setAttribute('width', intendedWidth)
 
