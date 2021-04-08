@@ -68,7 +68,7 @@ function changeFilterType (type) {
   filter.type = type
   switch (type) {
     case 'peaking':
-      filterQSlider.disabled = false
+      filterQSlider.disabled    = false
       filterGainSlider.disabled = false
       break
     case 'lowpass':
@@ -77,12 +77,12 @@ function changeFilterType (type) {
     case 'notch':
     case 'allpass':
       filterGainSlider.disabled = true
-      filterQSlider.disabled = false
+      filterQSlider.disabled    = false
       break
     case 'lowshelf':
     case 'highshelf':
       filterGainSlider.disabled = false
-      filterQSlider.disabled = true
+      filterQSlider.disabled    = true
       break
   }
 }
@@ -124,11 +124,11 @@ function UI (state) {
   }
 }
 
-/* iOS enable sound output */
+// Enable sound output in iOS
 window.addEventListener('touchstart', function () {
-  // Create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
+
   source.buffer = buffer
   source.connect(audioContext.destination)
   source.start(0)
