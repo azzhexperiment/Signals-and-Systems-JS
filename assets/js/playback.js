@@ -17,7 +17,11 @@ loadSound(sampleURL)
 
 playbackSlider.oninput = changeRate(playbackSlider.value)
 
-// Load sounds via ajax
+/**
+ * Load sounds via ajax
+ *
+ * @param {String} url
+ */
 function loadSound (url) {
   const request = new window.XMLHttpRequest()
   request.open('GET', url, true)
@@ -33,7 +37,9 @@ function loadSound (url) {
   request.send()
 }
 
-// set our sound buffer, loop, and connect to destination
+/**
+ * Setup sound settings
+ */
 function setupSound () {
   sound                    = audioContext.createBufferSource()
   sound.buffer             = sampleBuffer
@@ -43,7 +49,9 @@ function setupSound () {
   sound.connect(audioContext.destination)
 }
 
-// Play sound
+/**
+ * Play sound and toggle button
+ */
 function playSound () {
   setupSound()
   playButton.classList.add('d-none')
@@ -53,7 +61,9 @@ function playSound () {
   sound.start(0)
 }
 
-// Stop sound
+/**
+ * Stop sound and toggle button
+ */
 function stopSound () {
   stopButton.classList.add('d-none')
   playButton.classList.remove('d-none')
@@ -62,7 +72,11 @@ function stopSound () {
   sound.stop(0)
 }
 
-// Change playback speed/rate
+/**
+ * Change playback speed/rate
+ *
+ * @param {Number} rate
+ */
 function changeRate (rate) {
   sound.playbackRate.value = rate
   playbackRate.innerHTML   = rate

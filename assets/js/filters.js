@@ -25,7 +25,11 @@ filterFreqSlider.oninput = changeFilterFreq(filterFreqSlider.value)
 filterQSlider.oninput    = changeFilterQ(filterQSlider.value)
 filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
 
-// function to load sounds via AJAX
+/**
+ * Load sounds via ajax
+ *
+ * @param {String} url
+ */
 function loadSound (url) {
   const request = new window.XMLHttpRequest()
   request.open('GET', url, true)
@@ -41,29 +45,40 @@ function loadSound (url) {
 
   request.send()
 }
-// setup sound, loop, and connect to destination
+
+/**
+ * Setup sound settings
+ */
 function setupSound () {
-  sound = audioContext.createBufferSource()
+  sound        = audioContext.createBufferSource()
   sound.buffer = sampleBuffer
-  sound.loop = true
+  sound.loop   = true
   sound.connect(filter)
   filter.connect(audioContext.destination)
 }
 
-// play sound and enable / disable buttons
+/**
+ * Play sound and toggle button
+ */
 function playSound () {
   setupSound()
   UI('play')
   sound.start(0)
 }
 
-// stop sound and enable / disable buttons
+/**
+ * Stop sound and toggle button
+ */
 function stopSound () {
   UI('stop')
   sound.stop(0)
 }
 
-// change filter type and enable / disable controls depending on filter type
+/**
+ * change filter type and enable / disable controls depending on filter type
+ *
+ * @param {String} type
+ */
 function changeFilterType (type) {
   filter.type = type
   switch (type) {
@@ -87,24 +102,41 @@ function changeFilterType (type) {
   }
 }
 
-// Change filter frequency and update display
+/**
+ * Change filter frequency and update display
+ *
+ * @param {Number} freq
+ */
 function changeFilterFreq (freq) {
   filter.frequency.value = freq
   filterFreq.innerHTML = freq + 'Hz'
 }
 
-// Change filter Q and update display
+/**
+ * Change filter Q and update display
+ *
+ * @param {Number} Q
+ */
 function changeFilterQ (Q) {
   filter.Q.value = Q
   filterQ.innerHTML = Q
 }
 
-// Change filter Gain and update display
+/**
+ * Change filter Gain and update display
+ *
+ * @param {Number} gain
+ */
 function changeFilterGain (gain) {
   filter.gain.value = gain
   filterGain.innerHTML = gain + 'dB'
 }
 
+/**
+ * Set state of play button
+ *
+ * @param {String} state
+ */
 function UI (state) {
   switch (state) {
     case 'play':

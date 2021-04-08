@@ -259,7 +259,7 @@ function init () {
           x += barWidth + 1
         }
       }
-  
+
       drawAlt()
     } else if (visualSetting === 'off') {
       console.log('This is turned off')
