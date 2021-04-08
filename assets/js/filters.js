@@ -23,7 +23,7 @@ stopButton.onclick = stopSound
 filterType.oninput       = () => { changeFilterType(filterType.value) }
 filterFreqSlider.oninput = () => { changeFilterFreq(filterFreqSlider.value) }
 filterQSlider.oninput    = () => { changeFilterQ(filterQSlider.value) }
-filterGainSlider.oninput = () => { changeFilterGain(filterGainSlider.target.value) }
+filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
 
 /**
  * Load sounds via ajax
@@ -91,13 +91,13 @@ function changeFilterType (type) {
     case 'bandpass':
     case 'notch':
     case 'allpass':
-      filterGainSlider.disabled = true
       filterQSlider.disabled    = false
+      filterGainSlider.disabled = true
       break
     case 'lowshelf':
     case 'highshelf':
-      filterGainSlider.disabled = false
       filterQSlider.disabled    = true
+      filterGainSlider.disabled = false
       break
   }
 }
