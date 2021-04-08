@@ -15,7 +15,7 @@ stopButton.onclick = stopSound
 // Init
 loadSound(sampleURL)
 
-playbackSlider.oninput = changeRate(playbackSlider.value)
+playbackSlider.oninput = () => { changeRate(playbackSlider.value) }
 
 /**
  * Load sounds via ajax
