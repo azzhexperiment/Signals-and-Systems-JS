@@ -20,10 +20,10 @@ loadSound(sampleURL)
 playButton.onclick = playSound
 stopButton.onclick = stopSound
 
-filterType.oninput       = changeFilterType(filterType.value)
-filterFreqSlider.oninput = changeFilterFreq(filterFreqSlider.value)
-filterQSlider.oninput    = changeFilterQ(filterQSlider.value)
-filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
+filterType.oninput       = () => { changeFilterType(filterType.value) }
+filterFreqSlider.oninput = () => { changeFilterFreq(filterFreqSlider.value) }
+filterQSlider.oninput    = () => { changeFilterQ(filterQSlider.value) }
+filterGainSlider.oninput = () => { changeFilterGain(filterGainSlider.target.value) }
 
 /**
  * Load sounds via ajax
