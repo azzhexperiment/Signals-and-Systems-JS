@@ -23,7 +23,7 @@ stopButton.onclick = stopSound
 filterType.oninput       = () => { changeFilterType(filterType.value) }
 filterFreqSlider.oninput = () => { changeFilterFreq(filterFreqSlider.value) }
 filterQSlider.oninput    = () => { changeFilterQ(filterQSlider.value) }
-filterGainSlider.oninput = (event) => { changeFilterGain(event.target.value) }
+filterGainSlider.oninput = () => { changeFilterGain(filterGainSlider.value) }
 
 /**
  * Load sounds via ajax
