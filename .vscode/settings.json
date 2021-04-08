@@ -1,0 +1,9 @@
+{
+    "editor.minimap.maxColumn": 120,
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 120,
+    "editor.rulers": [
+        120
+    ],
+    "html.format.wrapLineLength": 120
+}
