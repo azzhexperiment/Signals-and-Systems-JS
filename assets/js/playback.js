@@ -3,7 +3,7 @@ let sampleBuffer, sound
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
 const sampleURL = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/beatbox.m4a'
 
-const playButton     = document.querySelector('.start')
+const playButton     = document.querySelector('.play')
 const stopButton     = document.querySelector('.stop')
 const playbackSlider = document.querySelector('.playback-slider')
 const playbackRate   = document.querySelector('.rate')
@@ -68,11 +68,11 @@ function changeRate (rate) {
   playbackRate.innerHTML   = rate
 }
 
-// iOS enable sound output
+// Enable sound output in iOS
 window.addEventListener('touchstart', function () {
-  // Create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
+
   source.buffer = buffer
   source.connect(audioContext.destination)
   source.start(0)
