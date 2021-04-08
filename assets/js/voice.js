@@ -1,6 +1,6 @@
 let source, soundSource, drawVisual
 
-const convolverUrl = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/concert-crowd.ogg'
+const convolverUrl  = 'https://azzhexperiment.github.io/Signals-and-Systems-JS/assets/audio/concert-crowd.ogg'
 
 const heading       = document.querySelector('h3')
 const canvas        = document.querySelector('.visualizer')
@@ -20,11 +20,8 @@ document.body.addEventListener('click', init)
 function init () {
   prepUI()
 
-  // Set up forked web audio context, for multiple browsers window.
-  // Is needed otherwise Safari explodes
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
-  // set up the different audio nodes we will use for the app
   const analyser     = audioCtx.createAnalyser()
   const distortion   = audioCtx.createWaveShaper()
   const gainNode     = audioCtx.createGain()
@@ -99,8 +96,8 @@ function init () {
       navigator.mediaDevices.getUserMedia = function (constraints) {
         // First get ahold of the legacy getUserMedia, if present
         const getUserMedia = navigator.webkitGetUserMedia ||
-                            navigator.mozGetUserMedia ||
-                            navigator.msGetUserMedia
+                             navigator.mozGetUserMedia ||
+                             navigator.msGetUserMedia
 
         // Some browsers just don't implement it - return a rejected promise with an error
         // to keep a consistent interface
@@ -130,8 +127,8 @@ function init () {
 
     const k = typeof amount === 'number' ? amount : 50
     const nSamples = 44100
-    const curve = new Float32Array(nSamples)
-    const deg = Math.PI / 180
+    const curve    = new Float32Array(nSamples)
+    const deg      = Math.PI / 180
 
     for (let i = 0; i < nSamples; ++i) {
       x = i * 2 / nSamples - 1
@@ -262,9 +259,10 @@ function init () {
           x += barWidth + 1
         }
       }
-
+  
       drawAlt()
     } else if (visualSetting === 'off') {
+      console.log('This is turned off')
       canvasCtx.clearRect(0, 0, WIDTH, HEIGHT)
       canvasCtx.fillStyle = 'red'
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT)

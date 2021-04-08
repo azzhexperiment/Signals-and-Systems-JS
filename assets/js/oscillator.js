@@ -51,7 +51,7 @@ function init () {
 
   gain = audioContext.createGain()
   gain.gain.value = 1
-  osc = audioContext.createOscillator()
+  osc  = audioContext.createOscillator()
   osc.type = 'sine'
   osc.frequency.value = 440
   osc.detune.value = 0
@@ -121,9 +121,8 @@ function addEventListenerBySelector (selector, event, fn) {
   }
 }
 
-/* iOS enable sound output */
+// Enable sound output in iOS
 window.addEventListener('touchstart', function () {
-  // create empty buffer
   const buffer = audioContext.createBuffer(1, 1, 22050)
   const source = audioContext.createBufferSource()
 
