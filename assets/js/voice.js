@@ -264,7 +264,7 @@ function init () {
     } else if (visualSetting === 'off') {
       console.log('This is turned off')
       canvasCtx.clearRect(0, 0, WIDTH, HEIGHT)
-      canvasCtx.fillStyle = 'black'
+      canvasCtx.fillStyle = 'rgb(0, 0, 0)'
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT)
     }
   }
