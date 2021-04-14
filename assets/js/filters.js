@@ -87,14 +87,29 @@ function changeFilterType (type) {
       filterGainSlider.disabled = false
       break
     case 'lowpass':
+      filterQSlider.disabled    = false
+      filterGainSlider.disabled = true
+      break
     case 'highpass':
+      filterQSlider.disabled    = false
+      filterGainSlider.disabled = true
+      break
     case 'bandpass':
+      filterQSlider.disabled    = false
+      filterGainSlider.disabled = true
+      break
     case 'notch':
+      filterQSlider.disabled    = false
+      filterGainSlider.disabled = true
+      break
     case 'allpass':
       filterQSlider.disabled    = false
       filterGainSlider.disabled = true
       break
     case 'lowshelf':
+      filterQSlider.disabled    = true
+      filterGainSlider.disabled = true
+      break
     case 'highshelf':
       filterQSlider.disabled    = true
       filterGainSlider.disabled = false
