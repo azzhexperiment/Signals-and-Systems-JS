@@ -13,9 +13,6 @@ const detuneDisplay = document.querySelector('.detune')
 // Starts the app. If no waveform selected, defaults to 440Hz sine wave
 init()
 
-// iOS hack
-body.addEventListener('touchend', init())
-
 // Setup start/stop
 playButton.onclick = start
 stopButton.onclick = stop
