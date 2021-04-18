@@ -1,5 +1,6 @@
 let audioContext, osc, gain
 
+const body          = document.getElementsByTagName("body")[0]
 const playButton    = document.querySelector('.play')
 const stopButton    = document.querySelector('.stop')
 const freqSlider    = document.querySelector('.freq-slider')
@@ -10,7 +11,8 @@ const freqDisplay   = document.querySelector('.freq')
 const detuneDisplay = document.querySelector('.detune')
 
 // Starts the app. If no waveform selected, defaults to 440Hz sine wave
-init()
+
+body.addEventListener('touchend', init)
 
 // Setup start/stop
 playButton.onclick = start
