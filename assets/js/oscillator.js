@@ -29,20 +29,9 @@ addEventListenerBySelector('.notes', 'click', function (event) {
   changeDetune(note)
 })
 
-// Update frequency when slider moves
-freqSlider.oninput = function () {
-  changeFreq(freqSlider.value)
-}
-
-// Detune frequency when slider moves
-detuneSlider.oninput = function () {
-  changeDetune(detuneSlider.value)
-}
-
-// Update gain when slider moves
-gainSlider.oninput = function () {
-  changeGain(gainSlider.value)
-}
+freqSlider.oninput   = () => { changeFreq(freqSlider.value) }
+gainSlider.oninput   = () => { changeGain(gainSlider.value) }
+detuneSlider.oninput = () => { changeDetune(detuneSlider.value) }
 
 /**
  * Starts the app. If no waveform selected, defaults to 440Hz sine wave.
